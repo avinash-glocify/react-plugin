@@ -4,7 +4,9 @@ import React  from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { CSVLink, CSVDownload } from "react-csv";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Add from '../Common/add.jsx';
+import 'react-tabs/style/react-tabs.css';
 
 const headers = [
   { label: 'Product Name', key: 'name' },
@@ -16,11 +18,10 @@ class Design extends React.Component {
   constructor() {
     super();
     this.state = {
-      productForm : {
-        name: '',
-        size: '',
-        test: ''
-      }
+      add1 : {},
+      add12: {},
+      final_url1:"",
+      final_url2:"",
     }
   }
   onChange = (e) => {
@@ -52,41 +53,42 @@ class Design extends React.Component {
                 //   })
                 // })
 
-              }
-              render() {
-                return <section className="pt-ad-preview">
-                  <div className="container">
-                    <form id="data_export_form" name="ad_export">
-                      <div className="row padd-top">
-                        <div className="pp-6">
-                          <div className="pt-tabpanel">
-                          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                          <Tab eventKey="home" title="Home">
-                            <Sonnet />
-                          </Tab>
-                          <Tab eventKey="profile" title="Profile">
-                            <Sonnet />
-                          </Tab>
-                          <Tab eventKey="contact" title="Contact" disabled>
-                            <Sonnet />
-                          </Tab>
-                        </Tabs>
-                            <ul className="pt-nav-tabs">
-                              <li className="active"><a  id="tab_ad1" href="#">Ad 1</a></li>
-                              <li><a  id="tab_ad2" href="#">Ad 2</a></li>
-                              <li><a  id="tab_ad3" href="#">Ad 3</a></li>
-                            </ul>
-                          </div>
-                          <div className="tab-content">
-                            <div id="tab_ad1" className="pt-adtab-content tab_ad1 active">
-                              <Add />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
+  }
+  changeState = (value) =>{
+    this.setState({
+      add1: value
+    })
+    console.log(this.state.add1);
+  }
+  changeState1 = (value) => {
+
+    this.setState({
+      add2: value
+    })
+    console.log(this.state.add1);
+  }
+    render() {
+      return <section className="pt-ad-preview">
+        <div className="container">
+          <form id="data_export_form" name="ad_export">
+            <div className="row padd-top">
+              <div className="pp-6">
+              <Tabs>
+                <div className="pt-tabpanel">
+                  <TabList><Tab>Add 1</Tab><Tab>Add 2</Tab></TabList>
+                </div>
+                <div className="tab-content">
+                  <div id="tab_ad1" className="pt-adtab-content tab_ad1 active">
+                    <TabPanel>  <Add add={this.state.add1} changeState={this.changeState} /></TabPanel>
+                    <TabPanel><Add add={this.state.add2} changeState={this.changeState1} /></TabPanel>
                   </div>
-                </section>;
-              }
-            };
-            export default Design;
+                </div>
+                </Tabs>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>;
+    }
+  };
+  export default Design;

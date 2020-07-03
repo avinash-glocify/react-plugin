@@ -1,19 +1,20 @@
 import React  from 'react';
 
+
 class Add extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       addForm: {
-        final_url: '',
-        headline1: '',
-        headline2: '',
-        headline3: '',
-        description1: '',
-        description2: '',
-        display_path: '',
-        path1: '',
-        path2: '',
+        final_url: this.props.add.final_url,
+        headline1: this.props.add.headline1,
+        headline2: this.props.add.headline2,
+        headline3: this.props.add.headline3,
+        description1: this.props.add.description1,
+        description2: this.props.add.description2,
+        display_path: this.props.add.display_path,
+        path1: this.props.add.path1,
+        path2: this.props.add.path2,
       }
     }
   }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './style/style.css';
+import './style/custom.css';
 
 import * as serviceWorker from './serviceWorker';
 import routing from './Routes/Routing.js';

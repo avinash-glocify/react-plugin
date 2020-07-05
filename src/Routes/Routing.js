@@ -1,6 +1,5 @@
 import React from 'react';
-import Product from '../Components/Products/index.jsx';
-import Design from '../Components/Products/design.jsx';
+import Home from '../Components/home.jsx';
 
 import {
   BrowserRouter as Router,
@@ -10,7 +9,7 @@ import {
 const routing = (
     <Router>
       <div>
-        <Route path="/" component={Design}></Route >
+        <Route path="/" component={Home}></Route >
       </div>
     </Router>
 )

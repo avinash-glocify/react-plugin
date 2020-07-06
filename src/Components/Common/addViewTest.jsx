@@ -1,6 +1,6 @@
 import React  from 'react';
 
-class AddView extends React.Component {
+class AddViewTest extends React.Component {
 render() {
   return <div>
     <div className="pt-goopreview goopreview-tab_ad1">
@@ -82,4 +82,4 @@ render() {
 };
 };
 
-export default AddView;
+export default AddViewTest;

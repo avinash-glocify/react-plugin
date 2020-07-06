@@ -1,8 +1,5 @@
 import React  from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom'
 import { CSVLink, CSVDownload } from "react-csv";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Add from './Common/add.jsx';
 import AddView from './Common/addView.jsx';
 
@@ -17,42 +14,29 @@ class Home extends React.Component {
     super();
     this.state = {
       add1 : {
-        state: true,
         headline1: 'Awesome Headline 1',
         headline2: 'Awesome Headline 2',
-        displayurl: 'www.example.com/ppc-services',
+        display_path: 'www.example.com/ppc-services',
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!'
       },
       add2: {
-        state: false,
         headline1: 'Awesome Headline 1',
         headline2: 'Awesome Headline 2',
-        displayurl: 'www.example.com/ppc-services',
+        display_path: 'www.example.com/ppc-services',
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!'
       },
       add3: {
-        state: false,
         headline1: 'Awesome Headline 1',
         headline2: 'Awesome Headline 2',
-        displayurl: 'www.example.com/ppc-services',
+        display_path: 'www.example.com/ppc-services',
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!'
       },
       activeAdd2: false,
       activeAdd3: false,
     }
-  }
-  onChange = (e) => {
-    const column = e.target.name;
-    const value  = e.target.value;
-    this.setState(prevState => ({
-      productForm: {
-        ...prevState.productForm,
-        [column] : value
-      }
-    }))
   }
 
   onSubmit = () => {
@@ -106,9 +90,10 @@ class Home extends React.Component {
 
     render() {
       return <section className="pt-ad-preview">
+      <div className="add-section bg-light">
         <div className="container">
             <div className="row padd-top">
-              <div className="pp-6">
+              <div className="pp-6 bg-white">
                 <div className="">
                   <ul className="nav nav-tabs">
                     <li className="nav-item"><a className="nav-link active"  data-toggle="tab" href="#add1">Add 1</a></li>
@@ -137,6 +122,7 @@ class Home extends React.Component {
              </div>
            </div>
         </div>
+      </div>
       </section>;
     }
   };

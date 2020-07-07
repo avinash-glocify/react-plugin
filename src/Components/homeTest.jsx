@@ -168,8 +168,8 @@ class HomeTest extends React.Component {
             <div className="HeadingDiv">
               <ul>
                 <li> {this.state.activeView} of 2 previews </li>
-                <li>  <a href="#" className="p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-left" aria-hidden="true"></i></strong></a></li>
-                <li><a href="#" className="p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-right" aria-hidden="true"></i></strong></a></li>
+                <li>  <button  className="btn p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-left" aria-hidden="true"></i></strong></button></li>
+                <li><button  className="btn p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-right" aria-hidden="true"></i></strong></button></li>
               </ul>
             </div>
             <div className="MobileDiv">

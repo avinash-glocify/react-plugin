@@ -49,6 +49,7 @@ class ResponsiveTab extends React.Component {
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!',
         display_path: 'www.example.com/ppc-services',
+        call_extension_country: '',
         path1: '',
         path2: '',
         sitelink1: '',
@@ -154,9 +155,9 @@ class ResponsiveTab extends React.Component {
                   </div>
                   <div className="form-group mb-0">
                     <label className="LabelPath d-block">Display Path</label>
-                    <input type="text" style={{width:'39%'}}  placeholder="www.example.com/path1" maxLength="30"  className="TextAdField" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
-                    /<input type="text" style={{width:'29%'}}  placeholder="path1" maxLength="15"  className="TextAdField" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
-                    /<input type="text" style={{width:'29%'}}  placeholder="path2" maxLength="14"  className="TextAdField" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
+                    <input type="text"  placeholder="www.example.com/path1" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
+                    /<input type="text" placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
+                    /<input type="text" placeholder="path2" maxLength="14"  className="TextAdField path" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
                   </div>
                   <div className="form-group mb-0">
                     <label className="LabelPath d-block">Headline</label>
@@ -284,7 +285,11 @@ class ResponsiveTab extends React.Component {
                   <div className="sitelink1">
                     <div className="form-group mb-0">
                       <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Call Extension" maxLength="25" className="TextAdField" name="call_extension" onChange={this.onChange} value={this.state.addForm.call_extension === null ? '' : this.state.addForm.call_extension } />
+                      <select className="TextAdField width_45"  name="call_extension_country"  onChange={this.onChange} value={this.state.addForm.call_extension_country === null ? '' : this.state.addForm.call_extension_country }>
+                         <option value="united state">United State</option>
+                         <option value="india">India</option>
+                      </select>
+                      <input type="text" placeholder="Call Extension" maxLength="25" className="TextAdField path" name="call_extension" onChange={this.onChange} value={this.state.addForm.call_extension === null ? '' : this.state.addForm.call_extension } />
                       <span className="addcarector">{(this.state.addForm.call_extension).length}/25</span>
                     </div>
                   </div>

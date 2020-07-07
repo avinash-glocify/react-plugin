@@ -10,7 +10,6 @@ import {
 const routing = (
     <Router>
       <div>
-        <Route exact path="/test" component={Home}></Route >
         <Route  path="/" component={HomeTest}></Route >
       </div>
     </Router>

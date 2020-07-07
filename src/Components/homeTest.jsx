@@ -5,7 +5,7 @@ import AddView from './Common/addView.jsx';
 import MobileView from './Common/mobile.jsx';
 import DesktopView from './Common/desktop.jsx';
 import ResponsiveTab from './Common/responsiveTab.jsx';
-import Switch from "react-switch";
+// import Switch from "react-switch";
 
 class HomeTest extends React.Component {
   constructor() {

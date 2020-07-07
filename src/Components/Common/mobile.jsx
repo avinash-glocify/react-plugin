@@ -1,5 +1,5 @@
 import React  from 'react';
-import Switch from "react-switch";
+// import Switch from "react-switch";
 
 class MobileView extends React.Component {
 render() {

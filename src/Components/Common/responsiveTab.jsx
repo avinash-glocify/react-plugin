@@ -75,7 +75,11 @@ class ResponsiveTab extends React.Component {
         structure_snippet_value_1: '',
         structure_snippet_value_2: '',
         structure_snippet_value_3: '',
-      }
+      },
+      headlines: [1,2,3],
+      descriptions: [1,2],
+      callouts: [1,2,3],
+      structure_snippets: [1,2,3],
     }
 
   }
@@ -133,18 +137,49 @@ class ResponsiveTab extends React.Component {
   exportAdd = () => {
     this.csvLink.link.click()
   }
+  addHeadLine = () => {
+    const { headlines } = this.state;
+    const lastElement = headlines[headlines.length - 1];
+    const nextEle = lastElement+1;
+    var joined = this.state.headlines.concat(nextEle);
+    var column = "headline"+nextEle;
+    this.setState({ headlines: joined });
+    this.setState(prevState => ({
+      addForm: {
+        ...prevState.addForm,
+        [column] : ''
+      }
+    }));
+  }
+  addDescription = () => {
+    const { descriptions } = this.state;
+    const lastElement = descriptions[descriptions.length - 1];
+    const nextEle = lastElement+1;
+    var joined = this.state.descriptions.concat(nextEle);
+    var column = "description"+nextEle;
+    this.setState({ descriptions: joined });
+    this.setState(prevState => ({
+      addForm: {
+        ...prevState.addForm,
+        [column] : ''
+      }
+    }));
+  }
   collapse = (e) => {
     const  parent = e.target.children[1];
-    if(parent.classList.contains('fa-plus')) {
-      parent.classList.remove('fa-plus');
-      parent.classList.add('fa-minus');
-    } else {
-      parent.classList.remove('fa-minus');
-      parent.classList.add('fa-plus');
+    if(parent) {
+      if(parent.classList.contains('fa-plus')) {
+        parent.classList.remove('fa-plus');
+        parent.classList.add('fa-minus');
+      } else {
+        parent.classList.remove('fa-minus');
+        parent.classList.add('fa-plus');
 
+      }
     }
   }
   render() {
+    let {headlines, descriptions, callouts, structure_snippets} = this.state;
     return <div>
             <div className="NewTextAd">
                 <form className="text-ad-form">
@@ -159,32 +194,31 @@ class ResponsiveTab extends React.Component {
                     /<input type="text" placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
                     /<input type="text" placeholder="path2" maxLength="14"  className="TextAdField path" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
                   </div>
-                  <div className="form-group mb-0">
-                    <label className="LabelPath d-block">Headline</label>
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <input type="text" placeholder="Heading 1" maxLength="30" className="TextAdField" name="headline1" onChange={this.onChange} value={this.state.addForm.headline1 === null ? '' : this.state.addForm.headline1 } />
-                    <span className="addcarector">{(this.state.addForm.headline1).length}/30</span>
-                  </div>
-                  <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <input type="text" placeholder="Heading 2" maxLength="30" className="TextAdField" name="headline2" onChange={this.onChange} value={this.state.addForm.headline2 === null ? '' : this.state.addForm.headline2 } />
-                    <span className="addcarector">{(this.state.addForm.headline2).length}/30</span>
-                  </div>
-                  <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <input type="text" name="" placeholder="Heading 3" maxLength="30" className="TextAdField" name="headline3" onChange={this.onChange} value={this.state.addForm.headline3 === null ? '' : this.state.addForm.headline3 } />
-                    <span className="addcarector">{(this.state.addForm.headline3).length}/30</span>
-                  </div>
-                  <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <textarea className="AdTextArea" placeholder="Description" maxLength="90" name="description1" onChange={this.onChange} value={this.state.addForm.description1 === null ? '' : this.state.addForm.description1 }></textarea>
-                    <span className="addcarector">{(this.state.addForm.description1).length}/90</span>
-                  </div>
-                  <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <textarea className="AdTextArea" placeholder="Description" maxLength="90"  name="description2" onChange={this.onChange} value={this.state.addForm.description2 === null ? '' : this.state.addForm.description2 }></textarea>
-                    <span className="addcarector">{(this.state.addForm.description2).length}/90</span>
-                  </div>
+                  { headlines.map((head, ind) => {
+                    let name = "headline"+head;
+                    let val = this.state.addForm[name];
+                    return (
+                    <div className="form-group mb-0" key={name}>
+                      <label className="LabelPath d-block">Headline {head}</label>
+                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                      <input type="text" placeholder={name} maxLength="30" className="TextAdField" name={name} onChange={this.onChange}   value={val === null ? '' : val} />
+                      <span className="addcarector">{val.length}/30</span>
+                    </div>
+                  );
+                }) }
+                  <button type="button" className="btn btn-link" onClick={this.addHeadLine}>Add Headline</button>
+                  { descriptions.map((desc, ind) => {
+                    let name = "description"+desc;
+                    let val = this.state.addForm[name];
+                    return (
+                        <div className="form-group mb-0" key={name}>
+                          <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                          <textarea className="AdTextArea" placeholder="Description" maxLength="90" name={name} onChange={this.onChange} value={val === null ? '' : val }></textarea>
+                          <span className="addcarector">{val.length}/90</span>
+                        </div>
+                    );
+                  }) }
+                  <button type="button" className="btn btn-link" onClick={this.addDescription}>Add Description</button>
                 </form>
             </div>
             <div className="card  mt-2">
@@ -307,36 +341,17 @@ class ResponsiveTab extends React.Component {
                 <div className=""></div>
                 <form className="text-ad-form">
                   <div className="sitelink1">
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 1" maxLength="25" className="TextAdField" name="callout1" onChange={this.onChange} value={this.state.addForm.callout1 === null ? '' : this.state.addForm.callout1 } />
-                      <span className="addcarector">{(this.state.addForm.callout1).length}/25</span>
-                    </div>
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 2" maxLength="25" className="TextAdField" name="callout2" onChange={this.onChange} value={this.state.addForm.callout2 === null ? '' : this.state.addForm.callout2 } />
-                      <span className="addcarector">{(this.state.addForm.callout2).length}/25</span>
-                    </div>
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 3" maxLength="25" className="TextAdField" name="callout3" onChange={this.onChange} value={this.state.addForm.callout3 === null ? '' : this.state.addForm.callout3 } />
-                      <span className="addcarector">{(this.state.addForm.callout3).length}/25</span>
-                    </div>
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 4" maxLength="25" className="TextAdField" name="callout4" onChange={this.onChange} value={this.state.addForm.callout4 === null ? '' : this.state.addForm.callout4 } />
-                      <span className="addcarector">{(this.state.addForm.callout4).length}/25</span>
-                    </div>
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 5" maxLength="25" className="TextAdField" name="callout5" onChange={this.onChange} value={this.state.addForm.callout5 === null ? '' : this.state.addForm.callout5 } />
-                      <span className="addcarector">{(this.state.addForm.callout5).length}/25</span>
-                    </div>
-                    <div className="form-group mb-0">
-                      <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text" placeholder="Callout Text 6" maxLength="25" className="TextAdField" name="callout6" onChange={this.onChange} value={this.state.addForm.callout6 === null ? '' : this.state.addForm.callout6 } />
-                      <span className="addcarector">{(this.state.addForm.callout6).length}/25</span>
-                    </div>
+                  { callouts.map((call, ind) => {
+                    let name = "callout"+call;
+                    let val = this.state.addForm[name];
+                      return (
+                        <div className="form-group mb-0" key={name}>
+                          <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                          <input type="text" placeholder={name} maxLength="25" className="TextAdField" name={name} onChange={this.onChange} value={val === null ? '' : val } />
+                          <span className="addcarector">{val.length}/25</span>
+                        </div>
+                      );
+                    }) }
                   </div>
                 </form>
               </div>
@@ -370,11 +385,17 @@ class ResponsiveTab extends React.Component {
                         </select>
                       </div>
                       <p className="mb-0 mt-3">Values</p>
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 1" maxLength="25" className="TextAdField" name="structure_snippet_value_1" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_1 === null ? '' : this.state.addForm.structure_snippet_value_1 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_1).length}/25</span>
-                      </div>
+                      { structure_snippets.map((str, ind) => {
+                        let name = "structure_snippet_value_"+str;
+                        let val = this.state.addForm[name];
+                        return (
+                          <div className="form-group mb-0" key={name}>
+                            <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                            <input type="text" placeholder="Value 1" maxLength="25" className="TextAdField" name={name} onChange={this.onChange} value={val === null ? '' : val } />
+                            <span className="addcarector">{val.length}/25</span>
+                          </div>
+                        )
+                      }) }
                       <div className="form-group mb-0">
                         <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
                         <input type="text" placeholder="Value 2" maxLength="25" className="TextAdField" name="structure_snippet_value_2" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_2 === null ? '' : this.state.addForm.structure_snippet_value_2 } />

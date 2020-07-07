@@ -10,7 +10,7 @@ render() {
             { this.props.data.headline2 ?  <a href="true" className="p-0"  onClick={(e) => { e.preventDefault() }}> | {this.props.data.headline2}</a> : ''}
             { this.props.data.headline3 ?  <a href="true" className="p-0"  onClick={(e) => { e.preventDefault() }}> | {this.props.data.headline3}</a> : ''}
               <a href="true" onClick={(e) => { e.preventDefault() }} className="SitePath">
-                <span>Ad</span> {this.props.data.display_path}
+                <span>Ad</span> {this.props.data.display_path} {this.props.data.path1} {this.props.data.path2}
               </a>
               {this.props.data.description1 ? <p className="text-break"><strong>Description 1</strong> {this.props.data.description1 }</p> : ''}
               {this.props.data.description2 ? <p className="text-break"><strong>Description 2</strong> {this.props.data.description2 }</p> : ''}
@@ -20,6 +20,15 @@ render() {
               {this.props.data.callout4 ? <span> - { this.props.data.callout4}</span> : '' }
               {this.props.data.callout5 ? <span> - { this.props.data.callout5}</span> : '' }
               {this.props.data.callout6 ? <span> - { this.props.data.callout6}</span> : '' }
+              </p>
+              <p><strong>Structure Snippet</strong>
+                {this.props.data.structure_snippet_header ? <span> { this.props.data.structure_snippet_header}</span> : '' }
+                {this.props.data.structure_snippet_value_1 ? <span> - { this.props.data.structure_snippet_value_1}</span> : '' }
+                {this.props.data.structure_snippet_value_2 ?  <span> - { this.props.data.structure_snippet_value_2}</span> : '' }
+                {this.props.data.structure_snippet_value_3 ?  <span> - { this.props.data.structure_snippet_value_3}</span> : '' }
+                {this.props.data.structure_snippet_value_4 ? <span> - { this.props.data.structure_snippet_value_4}</span> : '' }
+                {this.props.data.structure_snippet_value_5 ? <span> - { this.props.data.structure_snippet_value_5}</span> : '' }
+                {this.props.data.structure_snippet_value_6 ? <span> - { this.props.data.structure_snippet_value_6}</span> : '' }
               </p>
             </div>
             <div className="BottomTag">

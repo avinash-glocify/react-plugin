@@ -25,7 +25,7 @@ class HomeTest extends React.Component {
       formData: {
         headline1: 'Awesome Headline 1',
         headline2: 'Awesome Headline 2',
-        display_path: 'www.example.com/ppc-services',
+        display_path: 'www.example.com',
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!'
       }

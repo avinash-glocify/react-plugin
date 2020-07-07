@@ -37,7 +37,7 @@ const headers = [
   { label: 'Structure Snippet Value 3', key: 'structure_snippet_value_3' },
 ];
 
-class AddTest extends React.Component {
+class ResponsiveTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,9 +74,6 @@ class AddTest extends React.Component {
         structure_snippet_value_1: '',
         structure_snippet_value_2: '',
         structure_snippet_value_3: '',
-        structure_snippet_value_4: '',
-        structure_snippet_value_5: '',
-        structure_snippet_value_6: '',
       }
     }
 
@@ -136,7 +133,7 @@ class AddTest extends React.Component {
     this.csvLink.link.click()
   }
   collapse = (e) => {
-    const  parent = e.target.children[0];
+    const  parent = e.target.children[1];
     if(parent.classList.contains('fa-plus')) {
       parent.classList.remove('fa-plus');
       parent.classList.add('fa-minus');
@@ -149,8 +146,6 @@ class AddTest extends React.Component {
   render() {
     return <div>
             <div className="NewTextAd">
-                <div className="FormHeading">
-                </div>
                 <form className="text-ad-form">
                   <div className="form-group mb-0">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
@@ -158,6 +153,13 @@ class AddTest extends React.Component {
                     <span className="addcarector">{(this.state.addForm.final_url).length}/30</span>
                   </div>
                   <div className="form-group mb-0">
+                    <label className="LabelPath d-block">Display Path</label>
+                    <input type="text" style={{width:'39%'}}  placeholder="www.example.com/path1" maxLength="30"  className="TextAdField" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
+                    /<input type="text" style={{width:'29%'}}  placeholder="path1" maxLength="15"  className="TextAdField" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
+                    /<input type="text" style={{width:'29%'}}  placeholder="path2" maxLength="14"  className="TextAdField" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
+                  </div>
+                  <div className="form-group mb-0">
+                    <label className="LabelPath d-block">Headline</label>
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
                     <input type="text" placeholder="Heading 1" maxLength="30" className="TextAdField" name="headline1" onChange={this.onChange} value={this.state.addForm.headline1 === null ? '' : this.state.addForm.headline1 } />
                     <span className="addcarector">{(this.state.addForm.headline1).length}/30</span>
@@ -173,12 +175,6 @@ class AddTest extends React.Component {
                     <span className="addcarector">{(this.state.addForm.headline3).length}/30</span>
                   </div>
                   <div className="form-group mb-0">
-                    <label className="LabelPath d-block">Display Path</label>
-                    <input type="text" style={{width:'45%'}}  placeholder="www.example.com/path1" maxLength="30"  className="TextAdField" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
-                    /<input type="text" style={{width:'25%'}}  placeholder="path1" maxLength="15"  className="TextAdField" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
-                    /<input type="text" style={{width:'25%'}}  placeholder="path2" maxLength="14"  className="TextAdField" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
-                  </div>
-                  <div className="form-group mb-0">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
                     <textarea className="AdTextArea" placeholder="Description" maxLength="90" name="description1" onChange={this.onChange} value={this.state.addForm.description1 === null ? '' : this.state.addForm.description1 }></textarea>
                     <span className="addcarector">{(this.state.addForm.description1).length}/90</span>
@@ -191,8 +187,9 @@ class AddTest extends React.Component {
                 </form>
             </div>
             <div className="card  mt-2">
-              <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseSiteExtension" role="button" aria-expanded="false" aria-controls="collapseSiteExtension">Sitelinks<i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseSiteExtension" role="button" aria-expanded="false" aria-controls="collapseSiteExtension">
+                <a className="card-link btn-link" >Sitelinks</a>
+                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
               </div>
               <div id="collapseSiteExtension" className="collapse">
                 <div className="card-body">
@@ -276,9 +273,9 @@ class AddTest extends React.Component {
               </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallExtension" role="button" aria-expanded="false" aria-controls="collapseCallExtension">
-                Call Extension  <i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseCallExtension" role="button" aria-expanded="false" aria-controls="collapseCallExtension">
+                <a className="card-link">Call Extension</a>
+                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
               </div>
               <div id="collapseCallExtension" className="collapse">
               <div className="card-body">
@@ -287,7 +284,7 @@ class AddTest extends React.Component {
                   <div className="sitelink1">
                     <div className="form-group mb-0">
                       <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <input type="text"  placeholder="Call Extension" maxLength="25" className="TextAdField" name="call_extension" onChange={this.onChange} value={this.state.addForm.call_extension === null ? '' : this.state.addForm.call_extension } />
+                      <input type="text" placeholder="Call Extension" maxLength="25" className="TextAdField" name="call_extension" onChange={this.onChange} value={this.state.addForm.call_extension === null ? '' : this.state.addForm.call_extension } />
                       <span className="addcarector">{(this.state.addForm.call_extension).length}/25</span>
                     </div>
                   </div>
@@ -296,8 +293,9 @@ class AddTest extends React.Component {
             </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallouts" role="button" aria-expanded="false" aria-controls="collapseCallouts">Callouts   <i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseCallouts" role="button" aria-expanded="false" aria-controls="collapseCallouts">
+                <a className="card-link">Callouts</a>
+                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
               </div>
               <div id="collapseCallouts" className="collapse">
               <div className="card-body">
@@ -340,8 +338,9 @@ class AddTest extends React.Component {
             </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseStructueSnippet" role="button" aria-expanded="false" aria-controls="collapseStructueSnippet">Structured Snippets <i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseStructueSnippet" role="button" aria-expanded="false" aria-controls="collapseStructueSnippet">
+                <a className="card-link">Structured Snippets</a>
+                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
               </div>
               <div id="collapseStructueSnippet" className="collapse">
                 <div className="card-body">
@@ -381,21 +380,6 @@ class AddTest extends React.Component {
                         <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_3" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_3 === null ? '' : this.state.addForm.structure_snippet_value_3 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_3).length}/25</span>
                       </div>
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_4" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_4 === null ? '' : this.state.addForm.structure_snippet_value_4 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_4).length}/25</span>
-                      </div>
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_5" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_5 === null ? '' : this.state.addForm.structure_snippet_value_5 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_5).length}/25</span>
-                      </div>
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_6" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_6 === null ? '' : this.state.addForm.structure_snippet_value_6 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_6).length}/25</span>
-                      </div>
                     </div>
                   </form>
                 </div>
@@ -418,4 +402,4 @@ class AddTest extends React.Component {
   };
 };
 
-export default AddTest;
+export default ResponsiveTab;

@@ -1,6 +1,5 @@
 import React  from 'react';
-import $ from'jquery';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
 const headers = [
   { label: 'Final Url', key: 'final_url' },
@@ -41,44 +40,7 @@ class AddTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addForm: {
-        final_url: '',
-        headline1: 'Awesome Headline 1',
-        headline2: 'Awesome Headline 2',
-        headline3: '',
-        description1: 'Create Some Amazing Ad Copy Tod.',
-        description2: 'Make Your Ad Stand Out!',
-        display_path: 'www.example.com',
-        call_extension_country: '',
-        path1: '',
-        path2: '',
-        sitelink1: '',
-        sitelink1_desc_1: '',
-        sitelink1_desc_2: '',
-        sitelink2: '',
-        sitelink2_desc_1: '',
-        sitelink2_desc_2: '',
-        sitelink3: '',
-        sitelink3_desc_1: '',
-        sitelink3_desc_2: '',
-        sitelink4: '',
-        sitelink4_desc_1: '',
-        sitelink4_desc_2: '',
-        call_extension: '',
-        callout1: '',
-        callout2: '',
-        callout3: '',
-        callout4: '',
-        callout5: '',
-        callout6: '',
-        structure_snippet_header: '',
-        structure_snippet_value_1: '',
-        structure_snippet_value_2: '',
-        structure_snippet_value_3: '',
-        structure_snippet_value_4: '',
-        structure_snippet_value_5: '',
-        structure_snippet_value_6: '',
-      }
+      addForm: {}
     }
 
   }
@@ -128,6 +90,9 @@ class AddTest extends React.Component {
         structure_snippet_value_1: '',
         structure_snippet_value_2: '',
         structure_snippet_value_3: '',
+        structure_snippet_value_4: '',
+        structure_snippet_value_5: '',
+        structure_snippet_value_6: '',
       }
     })
     this.props.resetForm();
@@ -146,6 +111,9 @@ class AddTest extends React.Component {
       parent.classList.add('fa-plus');
 
     }
+  }
+  UNSAFE_componentWillMount() {
+    this.resetForm();
   }
   render() {
     return <div>
@@ -170,7 +138,7 @@ class AddTest extends React.Component {
                   </div>
                   <div className="form-group mb-0">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                    <input type="text" name="" placeholder="Heading 3" maxLength="30" className="TextAdField" name="headline3" onChange={this.onChange} value={this.state.addForm.headline3 === null ? '' : this.state.addForm.headline3 } />
+                    <input type="text" placeholder="Heading 3" maxLength="30" className="TextAdField" name="headline3" onChange={this.onChange} value={this.state.addForm.headline3 === null ? '' : this.state.addForm.headline3 } />
                     <span className="addcarector">{(this.state.addForm.headline3).length}/30</span>
                   </div>
                   <div className="form-group mb-0">

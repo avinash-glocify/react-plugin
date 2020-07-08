@@ -1,5 +1,4 @@
 import React from 'react';
-import Home from '../Components/home.jsx';
 import HomeTest from '../Components/homeTest.jsx';
 
 import {

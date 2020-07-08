@@ -1,12 +1,10 @@
 import React  from 'react';
-import $ from'jquery';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 
-const headers = [
+let headers = [
   { label: 'Final Url', key: 'final_url' },
   { label: 'Headline 1', key: 'headline1' },
   { label: 'Headline 2', key: 'headline2' },
-  { label: 'Headline 3', key: 'headline3' },
   { label: 'Description 1', key: 'description1' },
   { label: 'Description 2', key: 'description2' },
   { label: 'Display Path', key: 'display_path' },
@@ -28,9 +26,6 @@ const headers = [
   { label: 'Callout 1', key: 'callout1' },
   { label: 'Callout 2', key: 'callout2' },
   { label: 'Callout 3', key: 'callout3' },
-  { label: 'Callout 4', key: 'callout4' },
-  { label: 'Callout 5', key: 'callout5' },
-  { label: 'Callout 6', key: 'callout6' },
   { label: 'Structure Snippet Header', key: 'structure_snippet_header' },
   { label: 'Structure Snippet Value 1', key: 'structure_snippet_value_1' },
   { label: 'Structure Snippet Value 2', key: 'structure_snippet_value_2' },
@@ -41,41 +36,7 @@ class ResponsiveTab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addForm: {
-        final_url: '',
-        headline1: 'Awesome Headline 1',
-        headline2: 'Awesome Headline 2',
-        headline3: '',
-        description1: 'Create Some Amazing Ad Copy Tod.',
-        description2: 'Make Your Ad Stand Out!',
-        display_path: 'www.example.com',
-        call_extension_country: '',
-        path1: '',
-        path2: '',
-        sitelink1: '',
-        sitelink1_desc_1: '',
-        sitelink1_desc_2: '',
-        sitelink2: '',
-        sitelink2_desc_1: '',
-        sitelink2_desc_2: '',
-        sitelink3: '',
-        sitelink3_desc_1: '',
-        sitelink3_desc_2: '',
-        sitelink4: '',
-        sitelink4_desc_1: '',
-        sitelink4_desc_2: '',
-        call_extension: '',
-        callout1: '',
-        callout2: '',
-        callout3: '',
-        callout4: '',
-        callout5: '',
-        callout6: '',
-        structure_snippet_header: '',
-        structure_snippet_value_1: '',
-        structure_snippet_value_2: '',
-        structure_snippet_value_3: '',
-      },
+      addForm: {},
       headlines: [1,2,3],
       descriptions: [1,2],
       callouts: [1,2,3],
@@ -122,14 +83,15 @@ class ResponsiveTab extends React.Component {
         callout1: '',
         callout2: '',
         callout3: '',
-        callout4: '',
-        callout5: '',
-        callout6: '',
         structure_snippet_header: '',
         structure_snippet_value_1: '',
         structure_snippet_value_2: '',
         structure_snippet_value_3: '',
-      }
+      },
+      headlines: [1,2,3],
+      descriptions: [1,2],
+      callouts: [1,2,3],
+      structure_snippets: [1,2,3],
     })
     this.props.resetForm();
 
@@ -150,6 +112,9 @@ class ResponsiveTab extends React.Component {
         [column] : ''
       }
     }));
+    headers.push({ label: 'Headline '+nextEle, key: column });
+    this.props.changeState(column, '');
+    this.props.addColumnDynamic('headlines', nextEle);
   }
   addDescription = () => {
     const { descriptions } = this.state;
@@ -164,19 +129,58 @@ class ResponsiveTab extends React.Component {
         [column] : ''
       }
     }));
+    headers.push({ label: 'Description '+nextEle, key: column });
+    this.props.changeState(column, '');
+    this.props.addColumnDynamic('description', nextEle);
+  }
+  addStructureSnippets = () => {
+    const { structure_snippets } = this.state;
+    const lastElement = structure_snippets[structure_snippets.length - 1];
+    const nextEle = lastElement+1;
+    var joined = this.state.structure_snippets.concat(nextEle);
+    var column = "structure_snippet_value_"+nextEle;
+    this.setState({ structure_snippets: joined });
+    this.setState(prevState => ({
+      addForm: {
+        ...prevState.addForm,
+        [column] : ''
+      }
+    }));
+    headers.push({ label: 'Structure Snippet Value '+nextEle, key: column });
+    this.props.changeState(column, '');
+    this.props.addColumnDynamic('structure_snippets', nextEle);
+  }
+  addCallouts = () => {
+    const { callouts } = this.state;
+    const lastElement = callouts[callouts.length - 1];
+    const nextEle = lastElement+1;
+    var joined = this.state.callouts.concat(nextEle);
+    var column = "callout"+nextEle;
+    this.setState({ callouts: joined });
+    this.setState(prevState => ({
+      addForm: {
+        ...prevState.addForm,
+        [column] : ''
+      }
+    }));
+    headers.push({ label: 'Callouts '+nextEle, key: column });
+    this.props.changeState(column, '');
+    this.props.addColumnDynamic('callouts', nextEle);
   }
   collapse = (e) => {
-    const  parent = e.target.children[1];
-    if(parent) {
-      if(parent.classList.contains('fa-plus')) {
-        parent.classList.remove('fa-plus');
-        parent.classList.add('fa-minus');
-      } else {
-        parent.classList.remove('fa-minus');
-        parent.classList.add('fa-plus');
+    const  parent = e.target.children[0];
+    if(parent.classList.contains('fa-plus')) {
+      parent.classList.remove('fa-plus');
+      parent.classList.add('fa-minus');
+    } else {
+      parent.classList.remove('fa-minus');
+      parent.classList.add('fa-plus');
 
-      }
     }
+  }
+
+  UNSAFE_componentWillMount () {
+    this.resetForm();
   }
   render() {
     let {headlines, descriptions, callouts, structure_snippets} = this.state;
@@ -222,9 +226,10 @@ class ResponsiveTab extends React.Component {
                 </form>
             </div>
             <div className="card  mt-2">
-              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseSiteExtension" role="button" aria-expanded="false" aria-controls="collapseSiteExtension">
-                <a className="card-link btn-link" >Sitelinks</a>
-                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+              <div className="card-header">
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseSiteExtension" role="button" aria-expanded="false" aria-controls="collapseSiteExtension">
+                Sitelinks <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+                </a>
               </div>
               <div id="collapseSiteExtension" className="collapse">
                 <div className="card-body">
@@ -308,9 +313,10 @@ class ResponsiveTab extends React.Component {
               </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseCallExtension" role="button" aria-expanded="false" aria-controls="collapseCallExtension">
-                <a className="card-link">Call Extension</a>
-                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+              <div className="card-header" >
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallExtension" role="button" aria-expanded="false" aria-controls="collapseCallExtension">
+                Call Extension <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+                </a>
               </div>
               <div id="collapseCallExtension" className="collapse">
               <div className="card-body">
@@ -332,9 +338,10 @@ class ResponsiveTab extends React.Component {
             </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseCallouts" role="button" aria-expanded="false" aria-controls="collapseCallouts">
-                <a className="card-link">Callouts</a>
-                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+              <div className="card-header">
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallouts" role="button" aria-expanded="false" aria-controls="collapseCallouts">
+                Callouts <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+                </a>
               </div>
               <div id="collapseCallouts" className="collapse">
               <div className="card-body">
@@ -352,15 +359,17 @@ class ResponsiveTab extends React.Component {
                         </div>
                       );
                     }) }
+                    <button type="button" className="btn btn-link" onClick={this.addCallouts}>Add Callout Text</button>
                   </div>
                 </form>
               </div>
             </div>
             </div>
             <div className="card  mt-2">
-              <div className="card-header" onClick={this.collapse} data-toggle="collapse" href="#collapseStructueSnippet" role="button" aria-expanded="false" aria-controls="collapseStructueSnippet">
-                <a className="card-link">Structured Snippets</a>
-                <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+              <div className="card-header" >
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseStructueSnippet" role="button" aria-expanded="false" aria-controls="collapseStructueSnippet">
+                Structured Snippets <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+                </a>
               </div>
               <div id="collapseStructueSnippet" className="collapse">
                 <div className="card-body">
@@ -391,21 +400,12 @@ class ResponsiveTab extends React.Component {
                         return (
                           <div className="form-group mb-0" key={name}>
                             <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                            <input type="text" placeholder="Value 1" maxLength="25" className="TextAdField" name={name} onChange={this.onChange} value={val === null ? '' : val } />
+                            <input type="text" placeholder={"Value"+ str} maxLength="25" className="TextAdField" name={name} onChange={this.onChange} value={val === null ? '' : val } />
                             <span className="addcarector">{val.length}/25</span>
                           </div>
                         )
                       }) }
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 2" maxLength="25" className="TextAdField" name="structure_snippet_value_2" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_2 === null ? '' : this.state.addForm.structure_snippet_value_2 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_2).length}/25</span>
-                      </div>
-                      <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                        <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_3" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_3 === null ? '' : this.state.addForm.structure_snippet_value_3 } />
-                        <span className="addcarector">{(this.state.addForm.structure_snippet_value_3).length}/25</span>
-                      </div>
+                      <button type="button" className="btn btn-link" onClick={this.addStructureSnippets}>Add Value</button>
                     </div>
                   </form>
                 </div>

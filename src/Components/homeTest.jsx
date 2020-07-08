@@ -1,7 +1,5 @@
 import React  from 'react';
 import AddTest from './Common/addTest.jsx';
-import AddViewTest from './Common/addViewTest.jsx';
-import AddView from './Common/addView.jsx';
 import MobileView from './Common/mobile.jsx';
 import DesktopView from './Common/desktop.jsx';
 import ResponsiveTab from './Common/responsiveTab.jsx';
@@ -25,32 +23,18 @@ class HomeTest extends React.Component {
       formData: {
         headline1: 'Awesome Headline 1',
         headline2: 'Awesome Headline 2',
+        headline3: '',
         display_path: 'www.example.com',
         description1: 'Create Some Amazing Ad Copy Tod.',
         description2: 'Make Your Ad Stand Out!'
-      }
+      },
+      adHeadlines: [1,2,3],
+      adDescriptions: [1,2],
+      adCallouts: [1,2,3,4,5,6],
+      adStructure_snippets: [1,2,3,4,5,6],
     }
   }
 
-  onSubmit = () => {
-    this.csvLink.link.click()
-    // axios.post('http://react-wordpress.co/wp-json/react/v1/product/add', this.state ).then(res => {
-      //   if(res.status === 200) {
-        //     this.setState({
-          //       productForm: {
-            //         name: '',
-            //         size: ''
-            //       }
-            //     })
-            //     alert('success');
-            //   }
-            // }).catch(error => {
-              //   this.setState({
-                //     Errors: error.response.data.errors
-                //   })
-                // })
-
-  }
   handleChange = () => {
     this.setState(prevState => ({
         highlightAd: !prevState.highlightAd
@@ -88,6 +72,26 @@ class HomeTest extends React.Component {
       }
     }))
   }
+
+  addColumnDynamic1 = (column, value) => {
+    var joined = "";
+    if(column === 'headlines') {
+        joined = this.state.headlines.concat(value);
+      this.setState({ headlines: joined });
+    }
+    if(column === 'callouts') {
+        joined = this.state.callouts.concat(value);
+      this.setState({ callouts: joined });
+    }
+    if(column === 'structure_snippets') {
+        joined = this.state.structure_snippets.concat(value);
+      this.setState({ structure_snippets: joined });
+    }
+    if(column === 'description') {
+        joined = this.state.descriptions.concat(value);
+      this.setState({ descriptions: joined });
+    }
+  }
   activeAdd = (add) => {
     if(this.state.totalView !== 4) {
       this.setState({
@@ -99,7 +103,7 @@ class HomeTest extends React.Component {
 
   changeView = () => {
     let view = 1;
-    if(this.state.activeView == 1) {
+    if(this.state.activeView === 1) {
       view = 2
     }
     this.setState(prevState => ({
@@ -125,7 +129,11 @@ class HomeTest extends React.Component {
   }
   resetForm4 = () => {
     this.setState({
-      responsiveAddData: this.state.formData
+      responsiveAddData: this.state.formData,
+      headlines: [1,2,3],
+      descriptions: [1,2],
+      callouts: [1,2,3],
+      structure_snippets: [1,2,3],
     })
   }
   componentDidMount() {
@@ -160,7 +168,7 @@ class HomeTest extends React.Component {
                 <AddTest add="add3" changeState={this.changeState3} resetForm={this.resetForm3} />
               </div>
               <div id="responsive" className="tab-pane container fade p-0">
-                <ResponsiveTab add="add3" changeState={this.changeState4} resetForm={this.resetForm4} />
+                <ResponsiveTab add="add3" changeState={this.changeState4} addColumnDynamic={this.addColumnDynamic1} resetForm={this.resetForm4} />
               </div>
             </div>
           </div>
@@ -175,17 +183,25 @@ class HomeTest extends React.Component {
             <div className="MobileDiv">
               { this.state.mobileView  ? <div className="HeighLightAd">
                     <h3 className="Mobile">Mobile</h3>
-                    <MobileView data={this.state.add1} />
-                    { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} /> : '' }
-                    { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} /> : '' }
-                    { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} /> : '' }
+                    <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
+                    { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                    { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                    { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
+                     structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
                 </div> :
               <div className="HeighLightAd">
                   <h3 className="Mobile">Desktop</h3>
-                  <DesktopView data={this.state.add1} />
-                  { this.state.activeAdd2 === true ? <DesktopView data={this.state.add2} /> : '' }
-                  { this.state.activeAdd3 === true ? <DesktopView data={this.state.add3} /> : '' }
-                  { this.state.responsiveAdd === true ? <DesktopView data={this.state.responsiveAddData} /> : '' }
+                  <DesktopView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
+                  { this.state.activeAdd2 === true ? <DesktopView  data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                  { this.state.activeAdd3 === true ? <DesktopView  data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                  { this.state.responsiveAdd === true ? <DesktopView  headlines={this.state.headlines} callouts={this.state.callouts}
+                   structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions}  data={this.state.responsiveAddData} /> : '' }
               </div>
             }
             </div>

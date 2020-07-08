@@ -2,33 +2,46 @@ import React  from 'react';
 
 class DesktopView extends React.Component {
 render() {
+  let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
         <div className="AdContent mt-3 rounded-0">
           <div className="AdHeading rounded-0 mb-0">
-            <a href="true" className="p-0" onClick={(e) => { e.preventDefault() }}>{this.props.data.headline1}</a>
-          { this.props.data.headline2 ?  <a href="true" className="p-0"  onClick={(e) => { e.preventDefault() }}> | {this.props.data.headline2}</a> : ''}
-          { this.props.data.headline3 ?  <a href="true" className="p-0"  onClick={(e) => { e.preventDefault() }}> | {this.props.data.headline3}</a> : ''}
+            { headlines.map((head, ind) => {
+              let name = "headline"+head;
+              let val = this.props.data[name];
+              return (
+                <a href="true" className="p-0" key={name} onClick={(e) => { e.preventDefault() }}>
+                  { head !== 1 && val ? ' | '  : ''} {val}
+                </a>
+               )
+            }) }
             <a href="true" onClick={(e) => { e.preventDefault() }} className="SitePath">
-              <span>Ad</span> {this.props.data.display_path}  {this.props.data.call_extension}
+              <span>Ad</span> {this.props.data.display_path} {this.props.data.path1} {this.props.data.path2} { this.props.data.call_extension}
             </a>
-            {this.props.data.description1 ? <p><strong>Description 1</strong> { this.props.data.description1 }</p> : ''}
-            {this.props.data.description2 ? <p><strong>Description 2</strong> { this.props.data.description2 }</p> : ''}
+            { descriptions.map((desc, ind) => {
+              let name = "description"+desc;
+              let val = this.props.data[name];
+              return (
+                <p className="text-break" key={name}><strong>{"Description "+ desc}</strong> {val }</p>
+               )
+            }) }
             <p><strong>Callouts</strong>
-              {this.props.data.callout1 ? <span>{ this.props.data.callout1}</span> : '' }
-              {this.props.data.callout2 ?  <span> - { this.props.data.callout2}</span> : '' }
-              {this.props.data.callout3 ?  <span> - { this.props.data.callout3}</span> : '' }
-              {this.props.data.callout4 ? <span> - { this.props.data.callout4}</span> : '' }
-              {this.props.data.callout5 ? <span> - { this.props.data.callout5}</span> : '' }
-              {this.props.data.callout6 ? <span> - { this.props.data.callout6}</span> : '' }
+              { callouts.map((call, ind) => {
+                let name = "callout"+call;
+                let val = this.props.data[name];
+                return (
+                  <span key={name}> { call !== 1 && val ? ' - '  : ''}{val ? val : ''} </span>
+                 )
+              }) }
             </p>
-            <p><strong>Structure Snippet</strong>
-              {this.props.data.structure_snippet_header ? <span> { this.props.data.structure_snippet_header}</span> : '' }
-              {this.props.data.structure_snippet_value_1 ? <span> - { this.props.data.structure_snippet_value_1}</span> : '' }
-              {this.props.data.structure_snippet_value_2 ?  <span> - { this.props.data.structure_snippet_value_2}</span> : '' }
-              {this.props.data.structure_snippet_value_3 ?  <span> - { this.props.data.structure_snippet_value_3}</span> : '' }
-              {this.props.data.structure_snippet_value_4 ? <span> - { this.props.data.structure_snippet_value_4}</span> : '' }
-              {this.props.data.structure_snippet_value_5 ? <span> - { this.props.data.structure_snippet_value_5}</span> : '' }
-              {this.props.data.structure_snippet_value_6 ? <span> - { this.props.data.structure_snippet_value_6}</span> : '' }
+            <p><strong>Structure Snippet</strong> {this.props.data.structure_snippet_header}
+              { structure_snippets.map((str, ind) => {
+                let name = "structure_snippet_value_"+str;
+                let val = this.props.data[name];
+                return (
+                  <span key={name}> { str !== 1 && val ? ' - '  : ''}{val ? val : ''} </span>
+                 )
+              }) }
             </p>
           </div>
           <div className="BottomTag">

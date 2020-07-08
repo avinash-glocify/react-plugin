@@ -99,7 +99,8 @@ class ResponsiveTab extends React.Component {
   exportAdd = () => {
     this.csvLink.link.click()
   }
-  addHeadLine = () => {
+  addHeadLine = (e) => {
+    e.preventDefault();
     const { headlines } = this.state;
     const lastElement = headlines[headlines.length - 1];
     const nextEle = lastElement+1;
@@ -116,7 +117,8 @@ class ResponsiveTab extends React.Component {
     this.props.changeState(column, '');
     this.props.addColumnDynamic('headlines', nextEle);
   }
-  addDescription = () => {
+  addDescription = (e) => {
+    e.preventDefault();
     const { descriptions } = this.state;
     const lastElement = descriptions[descriptions.length - 1];
     const nextEle = lastElement+1;
@@ -133,7 +135,8 @@ class ResponsiveTab extends React.Component {
     this.props.changeState(column, '');
     this.props.addColumnDynamic('description', nextEle);
   }
-  addStructureSnippets = () => {
+  addStructureSnippets = (e) => {
+    e.preventDefault();
     const { structure_snippets } = this.state;
     const lastElement = structure_snippets[structure_snippets.length - 1];
     const nextEle = lastElement+1;
@@ -150,7 +153,8 @@ class ResponsiveTab extends React.Component {
     this.props.changeState(column, '');
     this.props.addColumnDynamic('structure_snippets', nextEle);
   }
-  addCallouts = () => {
+  addCallouts = (e) => {
+    e.preventDefault();
     const { callouts } = this.state;
     const lastElement = callouts[callouts.length - 1];
     const nextEle = lastElement+1;
@@ -210,7 +214,7 @@ class ResponsiveTab extends React.Component {
                     </div>
                   );
                 }) }
-                  <button type="button" className="btn btn-link" onClick={this.addHeadLine}>Add Headline</button>
+                  <a href="#" className="btn-link" onClick={this.addHeadLine}>Add Headline</a>
                   { descriptions.map((desc, ind) => {
                     let name = "description"+desc;
                     let val = this.state.addForm[name];
@@ -222,7 +226,7 @@ class ResponsiveTab extends React.Component {
                         </div>
                     );
                   }) }
-                  <button type="button" className="btn btn-link" onClick={this.addDescription}>Add Description</button>
+                  <a  href="#" className="btn-link" onClick={this.addDescription}>Add Description</a>
                 </form>
             </div>
             <div className="card  mt-2">
@@ -359,7 +363,7 @@ class ResponsiveTab extends React.Component {
                         </div>
                       );
                     }) }
-                    <button type="button" className="btn btn-link" onClick={this.addCallouts}>Add Callout Text</button>
+                    <a href="#" className="btn-link" onClick={this.addCallouts}>Add Callout Text</a>
                   </div>
                 </form>
               </div>
@@ -405,7 +409,7 @@ class ResponsiveTab extends React.Component {
                           </div>
                         )
                       }) }
-                      <button type="button" className="btn btn-link" onClick={this.addStructureSnippets}>Add Value</button>
+                      <a href="#" className="btn-link" onClick={this.addStructureSnippets}>Add Value</a>
                     </div>
                   </form>
                 </div>
@@ -413,8 +417,8 @@ class ResponsiveTab extends React.Component {
             </div>
             <div className="mt-2">
               <div className="">
-                <button type="button" className="btn btn-danger" onClick={this.resetForm}>Reset</button>
-                <button type="button" className="btn btn-success ml-1" onClick={this.exportAdd}>Export This Add To Xls</button>
+                <button type="button" className="btn btn-danger reset-button" onClick={this.resetForm}>Reset</button>
+                <button type="button" className="btn btn-success ml-1 import-button" onClick={this.exportAdd}>Export This Add To Xls</button>
               </div>
             </div>
 

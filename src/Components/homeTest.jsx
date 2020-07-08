@@ -101,7 +101,8 @@ class HomeTest extends React.Component {
     }
   }
 
-  changeView = () => {
+  changeView = (e) => {
+    e.preventDefault();
     let view = 1;
     if(this.state.activeView === 1) {
       view = 2
@@ -174,11 +175,11 @@ class HomeTest extends React.Component {
           </div>
           <div className="col-md-6 NoPadding">
             <div className="HeadingDiv">
-              <ul>
-                <li> {this.state.activeView} of 2 previews </li>
-                <li>  <button  className="btn p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-left" aria-hidden="true"></i></strong></button></li>
-                <li><button  className="btn p-0" title="Chagne View" onClick={this.changeView}><strong><i className="fa fa-angle-right" aria-hidden="true"></i></strong></button></li>
-              </ul>
+            <ul>
+              <li> {this.state.activeView} of 2 previews </li>
+              <li>  <a href="#" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-left font-weight-bold" aria-hidden="true"></i></strong></a></li>
+              <li><a href="#" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-right font-weight-bold" aria-hidden="true"></i></strong></a></li>
+            </ul>
             </div>
             <div className="MobileDiv">
               { this.state.mobileView  ? <div className="HeighLightAd">

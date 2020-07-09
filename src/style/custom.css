@@ -2,7 +2,7 @@
 .FormSection{padding: 30px 0; height: 100%;}
 .NewTextAd {width: 100%; background: #fff; padding: 20px; background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;border-top: none;}
 .TextAdField {width: 100%;height: 30px; border-left: none !important; border-right: none !important; border-top: none !important; border-bottom: 1px solid #c8c8c8 !important; font-size: 13px !important;}
-.AdTextArea{width: 100%; height: 60px; border-left: none !important; border-right: none !important; border-top: none !important; border-bottom: 1px solid #c8c8c8 !important; font-size: 13px !important;}
+.AdTextArea{width: 100%; height: 60px; border-left: none !important; border-right: none !important; border-top: none !important; border-bottom: 1px solid #c8c8c8 !important; font-size: 13px !important;padding: 15px;}
 .NewTextAd h2 {margin: 0 0 20px;font-size: 20px;font-weight: 600;}
 .addcarector {text-align: right;font-size: 12px; color: #b0b0b0;font-weight: 600;display: block;}
 .text-ad-form .form-group {position: relative;margin-bottom: 10px;}

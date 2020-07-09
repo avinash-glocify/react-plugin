@@ -1,5 +1,5 @@
 import React  from 'react';
-import AddTest from './Common/addTest.jsx';
+import Add from './Common/add.jsx';
 import MobileView from './Common/mobile.jsx';
 import DesktopView from './Common/desktop.jsx';
 import ResponsiveTab from './Common/responsiveTab.jsx';
@@ -210,19 +210,19 @@ class Home extends React.Component {
               </ul>
             </div>
             <div className="tab-content">
-              <div id="add1" className="tab-pane active container p-0">
-                <AddTest add="add1" changeState={this.changeState1} resetForm={this.resetForm1}
+              <div id="add1" className="tab-pane active  p-0">
+                <Add add="add1" changeState={this.changeState1} resetForm={this.resetForm1}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
               </div>
-              <div id="add2" className="tab-pane container fade p-0">
-                <AddTest add="add2" changeState={this.changeState2} resetForm={this.resetForm2}
+              <div id="add2" className="tab-pane  fade p-0">
+                <Add add="add2" changeState={this.changeState2} resetForm={this.resetForm2}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
               </div>
-              <div id="add3" className="tab-pane container fade p-0">
-                <AddTest add="add3" changeState={this.changeState3} resetForm={this.resetForm3}
+              <div id="add3" className="tab-pane  fade p-0">
+                <Add add="add3" changeState={this.changeState3} resetForm={this.resetForm3}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
               </div>
-              <div id="responsive" className="tab-pane container fade p-0">
+              <div id="responsive" className="tab-pane  fade p-0">
                 <ResponsiveTab add="add3" changeState={this.changeState4} addColumnDynamic={this.addColumnDynamic1}
                 resetForm={this.resetForm4} structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
               </div>
@@ -232,8 +232,8 @@ class Home extends React.Component {
             <div className="HeadingDiv">
             <ul>
               <li> {this.state.activeView} of 2 previews </li>
-              <li>  <a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-left font-weight-bold" aria-hidden="true"></i></strong></a></li>
-              <li><a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-right font-weight-bold" aria-hidden="true"></i></strong></a></li>
+              <li className="ml-0">  <a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-left font-weight-bold" aria-hidden="true"></i></strong></a></li>
+              <li className="ml-0"><a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-right font-weight-bold" aria-hidden="true"></i></strong></a></li>
             </ul>
             </div>
             <div className="MobileDiv">

@@ -192,7 +192,8 @@ class ResponsiveTab extends React.Component {
                     <span className="addcarector">{(this.state.addForm.final_url).length}/30</span>
                   </div>
                   <div className="form-group mb-0">
-                    <label className="LabelPath d-block">Display Path</label>
+
+                    <label className="LabelPath d-block">Display Path <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text"  placeholder="www.example.com" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
                     /<input type="text" placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
                     /<input type="text" placeholder="path2" maxLength="14"  className="TextAdField path" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
@@ -210,7 +211,7 @@ class ResponsiveTab extends React.Component {
                     </div>
                   );
                 }) }
-                  <a href="true" className="btn-link" onClick={this.addHeadLine}>Add Headline</a>
+                  <a href="true" className="btn-link mb-2" onClick={this.addHeadLine}>ADD HEADLINE</a>
                   { descriptions.map((desc, ind) => {
                     let name = "description"+desc;
                     let val = this.state.addForm[name];
@@ -220,7 +221,7 @@ class ResponsiveTab extends React.Component {
                         </div>
                     );
                   }) }
-                  <a  href="true" className="btn-link" onClick={this.addDescription}>Add Description</a>
+                  <a href="true" className="btn-link mb-2" onClick={this.addDescription}>ADD DESCRIPTION</a>
                 </form>
             </div>
             <div className="card  mt-2">
@@ -295,7 +296,7 @@ class ResponsiveTab extends React.Component {
                         </div>
                       );
                     }) }
-                    <a href="true" className="btn-link" onClick={this.addCallouts}>Add Callout Text</a>
+                    <a href="true" className="btn-link mb-2" onClick={this.addCallouts}>ADD CALLOUT TEXT</a>
                   </div>
                 </form>
               </div>
@@ -312,7 +313,7 @@ class ResponsiveTab extends React.Component {
                   <div className=""></div>
                   <form className="text-ad-form">
                     <div className="sitelink1">
-                      <p className="mb-0">Header</p>
+                      <label className="LabelPath d-block mb-2">Header <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       <div className="form-group mb-0">
                         <select className="TextAdField"  name="structure_snippet_header"  onChange={this.onChange} value={this.state.addForm.structure_snippet_header === null ? '' : this.state.addForm.structure_snippet_header }>
                         { structureHeaders.map((head, ind) => {
@@ -322,7 +323,7 @@ class ResponsiveTab extends React.Component {
                         })}
                         </select>
                       </div>
-                      <p className="mb-0 mt-3">Values</p>
+                      <label className="LabelPath d-block mt-3 mb-2">Values <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       { structure_snippets.map((str, ind) => {
                         let name = "structure_snippet_value_"+str;
                         let val = this.state.addForm[name];
@@ -334,7 +335,7 @@ class ResponsiveTab extends React.Component {
                           </div>
                         )
                       }) }
-                      <a href="true" className="btn-link" onClick={this.addStructureSnippets}>Add Value</a>
+                      <a href="true" className="btn-link" onClick={this.addStructureSnippets}>ADD VALUE</a>
                     </div>
                   </form>
                 </div>
@@ -342,8 +343,8 @@ class ResponsiveTab extends React.Component {
             </div>
             <div className="mt-2">
               <div className="card-header">
-                <button type="button" className="btn btn-danger reset-button" onClick={this.resetForm}>Reset</button>
-                <button type="button" className="btn btn-success ml-1 import-button" onClick={this.exportAdd}>Export This Add To Xls</button>
+                <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.resetForm}>Reset</button>
+                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export This Add To Xls</button>
               </div>
             </div>
 

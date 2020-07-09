@@ -341,7 +341,7 @@ class ResponsiveTab extends React.Component {
               </div>
             </div>
             <div className="mt-2">
-              <div className="">
+              <div className="card-header">
                 <button type="button" className="btn btn-danger reset-button" onClick={this.resetForm}>Reset</button>
                 <button type="button" className="btn btn-success ml-1 import-button" onClick={this.exportAdd}>Export This Add To Xls</button>
               </div>

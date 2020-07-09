@@ -24,7 +24,7 @@ render() {
               let name = "description"+desc;
               let val = this.props.data[name];
               return (
-                <p className={`text-break ${val ? 'd-none' : ''}`}  key={name}><strong>{"Description "+ desc}</strong> {val }</p>
+                <p className="text-break"  key={name}><strong>{"Description "+ desc}</strong> {val }</p>
                )
             }) }
             <p><strong>Callouts</strong>

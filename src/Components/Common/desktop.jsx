@@ -4,7 +4,8 @@ class DesktopView extends React.Component {
 render() {
   let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
-        <div className="AdContent mt-3 rounded-0">
+        <div className="AdContent">
+        <div className="addViewContainer mt-3 rounded-0">
           <div className="AdHeading rounded-0 mb-0">
             { headlines.map((head, ind) => {
               let name = "headline"+head;
@@ -22,7 +23,7 @@ render() {
               let name = "description"+desc;
               let val = this.props.data[name];
               return (
-                <p className="text-break" key={name}><strong>{"Description "+ desc}</strong> {val }</p>
+                <p className={`text-break ${val ? 'd-none' : ''}`}  key={name}><strong>{"Description "+ desc}</strong> {val }</p>
                )
             }) }
             <p><strong>Callouts</strong>
@@ -70,6 +71,7 @@ render() {
               </div>
             </div>
           </div>
+        </div>
         </div>
         </div>;
       };

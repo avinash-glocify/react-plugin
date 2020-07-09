@@ -26,7 +26,8 @@ i.AngleDown {font-size: 22px;}
 .AdHeading a.SitePath {padding: 5px 0 0; display: block; font-size: 14px; color: green;}
 .AdHeading a.SitePath span {border: 1px solid green; padding: 0 2px;}
 .AdContent p {padding: 5px 0; margin: 5px 0 0; font-size: 13px; border-top: 1px solid #c8c8c8;}
-.AdContent {background: #c2c2c2;padding: 10px;border-radius: 5px;}
+.AdContent {}
+.addViewContainer {background: #c2c2c2;padding: 10px;border-radius: 5px;}
 .AdHeading {background: #fff;padding: 10px;border-radius: 5px; margin-bottom: 10px;}
 
 .BottomTagInner a{color: #2000ae; font-weight: 600;padding: 0 10px;}

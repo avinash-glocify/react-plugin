@@ -5,7 +5,8 @@ class MobileView extends React.Component {
 render() {
   let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
-          <div className="AdContent mt-3">
+          <div className="AdContent ">
+          <div className="addViewContainer mt-3">
             <div className="AdHeading">
               { headlines.map((head, ind) => {
                 let name = "headline"+head;
@@ -75,6 +76,7 @@ render() {
                 </p>
               </div>
             </div>
+          </div>
           </div>
         </div>;
 };

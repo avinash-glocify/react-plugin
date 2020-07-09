@@ -1,5 +1,5 @@
 import React  from 'react';
-// import Switch from "react-switch";
+import SiteLink from './sitelink.jsx'
 
 class MobileView extends React.Component {
 render() {
@@ -48,28 +48,7 @@ render() {
             </div>
             <div className="BottomTag">
               <div className="BottomTagInner">
-                <div className="row">
-                    { this.props.data.sitelink1 ? <div className="col-md-6 text-center mt-2">
-                      <a href="true" onClick={(e) => { e.preventDefault() }}>{this.props.data.sitelink1}</a>
-                      <span className="d-block text-break">{this.props.data.sitelink1_desc_1}</span>
-                      <span className="d-block text-break">{this.props.data.sitelink1_desc_2}</span>
-                    </div> : ''}
-                  { this.props.data.sitelink2 ?   <div className="col-md-6 text-center mt-2">
-                      <a href="true" onClick={(e) => { e.preventDefault() }}>{this.props.data.sitelink2}</a>
-                      <span className="d-block text-break">{this.props.data.sitelink2_desc_1}</span>
-                      <span className="d-block text-break">{this.props.data.sitelink2_desc_2}</span>
-                    </div> : ''}
-                  { this.props.data.sitelink3 ?<div className="col-md-6 text-center mt-2">
-                      <a href="true" onClick={(e) => { e.preventDefault() }}>{this.props.data.sitelink3}</a>
-                      <span className="d-block text-break">{this.props.data.sitelink3_desc_1}</span>
-                      <span className="d-block text-break">{this.props.data.sitelink3_desc_2}</span>
-                    </div> : '' }
-                  { this.props.data.sitelink4 ?<div className="col-md-6 text-center mt-2">
-                      <a href="true" onClick={(e) => { e.preventDefault() }}>{this.props.data.sitelink4}</a>
-                      <span className="d-block text-break">{this.props.data.sitelink4_desc_1}</span>
-                      <span className="d-block text-break">{this.props.data.sitelink4_desc_2}</span>
-                    </div> : '' }
-                </div>
+                <SiteLink  data={this.props.data} />
                 <p className="PhoneCall">
                   <i className="fa fa-phone" aria-hidden="true"></i>
                     Call {this.props.data.call_extension}

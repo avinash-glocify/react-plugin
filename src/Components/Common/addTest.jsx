@@ -244,8 +244,8 @@ class AddTest extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="mt-2">
-              <div className="">
+            <div className="row mt-2">
+              <div className="card-header">
                 <button type="button" className="btn btn-danger" onClick={this.resetForm}>Reset</button>
                 <button type="button" className="btn btn-success ml-1" onClick={this.exportAdd}>Export This Add To Xls</button>
               </div>

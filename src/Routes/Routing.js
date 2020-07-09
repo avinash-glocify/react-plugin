@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeTest from '../Components/homeTest.jsx';
+import Home from '../Components/home.jsx';
 
 import {
   BrowserRouter as Router,
@@ -9,7 +9,7 @@ import {
 const routing = (
     <Router>
       <div>
-        <Route  path="/" component={HomeTest}></Route >
+        <Route  path="/" component={Home}></Route >
       </div>
     </Router>
 )

@@ -39,14 +39,14 @@ class CallExtension extends React.Component {
                 <div className="sitelink1">
                   <div className="form-group mb-0">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-                      <select className="TextAdField width_45"  name="call_extension_country"  onChange={this.onChange} value={this.state.call_extension_country === null ? '' : this.state.call_extension_country }>
+                      <select className="TextAdField width_45" style={{height:'40px'}}  name="call_extension_country"  onChange={this.onChange} value={this.state.call_extension_country === null ? '' : this.state.call_extension_country }>
                         { countries.map((country, ind) => {
                           return (
                             <option value={country.name} key={country.name}>{country.name}</option>
                           );
                        })}
                       </select>
-                    <input type="text" placeholder="Phone Number" maxLength="15" className="TextAdField width_45" name="call_extension" onChange={this.onChange} value={this.state.call_extension === null ? '' : this.state.call_extension } />
+                    <input type="text" placeholder="Phone Number" style={{height:'40px'}} maxLength="15" className="TextAdField width_45 ml-4" name="call_extension" onChange={this.onChange} value={this.state.call_extension === null ? '' : this.state.call_extension } />
                     <span className="addcarector">{(this.state.call_extension).length}/15</span>
                   </div>
                 </div>

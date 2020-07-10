@@ -241,27 +241,31 @@ class Home extends React.Component {
               { this.state.mobileView  ?
                 <div className="HeighLightAd">
                     <h3 className="Mobile">Mobile</h3>
-                    <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    <div className="smartphone">
+                      <div className="content">
+                        <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
+                        { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                        { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                        { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
+                         structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
+                       </div>
+                     </div>
+                 </div>:
+                  <div className="HeighLightAd">
+                    <h3 className="Mobile">Desktop</h3>
+                    <DesktopView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
-                    { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    { this.state.activeAdd2 === true ? <DesktopView  data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    { this.state.activeAdd3 === true ? <DesktopView  data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
-                     structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
-                </div> :
-              <div className="HeighLightAd">
-              <h3 className="Mobile">Desktop</h3>
-                  <DesktopView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
-                  { this.state.activeAdd2 === true ? <DesktopView  data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                  { this.state.activeAdd3 === true ? <DesktopView  data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                   structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                  { this.state.responsiveAdd === true ? <DesktopView  headlines={this.state.headlines} callouts={this.state.callouts}
-                   structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions}  data={this.state.responsiveAddData} /> : '' }
-              </div>
-            }
+                    { this.state.responsiveAdd === true ? <DesktopView  headlines={this.state.headlines} callouts={this.state.callouts}
+                     structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions}  data={this.state.responsiveAddData} /> : '' }
+                  </div>
+                }
             </div>
           </div>
         </div>

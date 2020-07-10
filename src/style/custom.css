@@ -18,7 +18,7 @@ i.AngleDown {font-size: 22px;}
 #erw-root {
   max-width: 100% !important;
 }
-.MobileDiv {padding: 20px;background: #f5f5f5;}
+.MobileDiv {padding: 10px;background: #f5f5f5;}
 .AdLight {text-align: right;} .AdLight span{font-weight: 600;}
 .Mobile {font-size: 14px;font-weight: 600; margin:0px !important;}
 .AdHeading a {padding: 0 20px 0 0px; color: #2000ae; font-weight: 600;}
@@ -27,7 +27,7 @@ i.AngleDown {font-size: 22px;}
 .AdHeading a.SitePath span {border: 1px solid green; padding: 0 2px;}
 .AdContent p {padding: 5px 0; margin: 5px 0 0; font-size: 13px; border-top: 1px solid #c8c8c8;}
 .AdContent {}
-.addViewContainer {background: #c2c2c2;padding: 10px;border-radius: 5px;}
+.addViewContainer {background: #c2c2c2;padding: 8px;border-radius: 5px;}
 .AdHeading {background: #fff;padding: 10px;border-radius: 5px; margin-bottom: 10px;}
 
 .BottomTagInner a{color: #2000ae; font-weight: 600;padding: 0 10px;}
@@ -71,3 +71,46 @@ textarea:focus,input:focus {
 }
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.smartphone {
+  position: relative;
+  margin: auto;
+  border-color: #e8eaed;
+  border-style: solid;
+  border-width: 40px 5px 60px;
+  border-radius: 36px;
+}
+
+/* The horizontal line on the top of the device */
+.smartphone:before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 5px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 10px;
+}
+
+/* The circle on the bottom of the device */
+.smartphone:after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 50%;
+}
+
+/* The screen (or content) of the device */
+.smartphone .content {
+ background: white;
+ padding: 5px;
+}

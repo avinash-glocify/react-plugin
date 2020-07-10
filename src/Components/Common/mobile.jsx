@@ -5,14 +5,14 @@ class MobileView extends React.Component {
 render() {
   let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
-          <div className="AdContent ">
-          <div className="addViewContainer mt-3">
+          <div className="AdContent mt-2">
+          <div className="addViewContainer">
             <div className="AdHeading">
               { headlines.map((head, ind) => {
                 let name = "headline"+head;
                 let val = this.props.data[name];
                 return (
-                  <a href="true" className="p-0" key={name} onClick={(e) => { e.preventDefault() }}>
+                  <a href="true" className="p-0 text-break" key={name} onClick={(e) => { e.preventDefault() }}>
                     { head !== 1 && val ? ' | '  : ''} {val}
                   </a>
                  )

@@ -113,7 +113,7 @@ class Add extends React.Component {
                   <InputComponent ref="headline" placeholder="Headline 3" maxLength="30" changeHeadline={this.changeDynamicState} name="headline3" headline={this.state.addForm.headline3} />
                   <div className="form-group mb-0">
                     <label className="LabelPath d-block">Display Path <i className="fa fa-question-circle" aria-hidden="true"></i></label>
-                    <input type="text"  placeholder="www.example.com/path1" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
+                    <input type="text"  placeholder="www.example.com" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
                     /<input type="text"  placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
                     /<input type="text" placeholder="path2" maxLength="14"  className="TextAdField path" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
                   </div>
@@ -245,8 +245,8 @@ class Add extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="row mt-2">
-              <div className="card-header">
+            <div className="mt-2">
+              <div className="card-body p-0 pb-2">
                 <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.resetForm}>Reset</button>
                 <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export This Add To Xls</button>
               </div>

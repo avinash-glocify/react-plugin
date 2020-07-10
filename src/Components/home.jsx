@@ -72,6 +72,7 @@ class Home extends React.Component {
         { label: 'Sitelink 4 Description 1', key: 'sitelink4_desc_1' },
         { label: 'Sitelink 4 Description 2', key: 'sitelink4_desc_2' },
         { label: 'Call Extension', key: 'call_extension' },
+        { label: 'Call Extension Country', key: 'call_extension_country' },
         { label: 'Callout 1', key: 'callout1' },
         { label: 'Callout 2', key: 'callout2' },
         { label: 'Callout 3', key: 'callout3' },

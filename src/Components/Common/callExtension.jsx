@@ -1,4 +1,5 @@
 import React  from 'react';
+import countries from './countries.js';
 
 class CallExtension extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class CallExtension extends React.Component {
   UNSAFE_componentWillMount() {
     this.resetForm();
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({ call_extension_country: nextProps.country, call_extension: nextProps.phone });
   }
@@ -38,9 +40,9 @@ class CallExtension extends React.Component {
                   <div className="form-group mb-0">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
                       <select className="TextAdField width_45"  name="call_extension_country"  onChange={this.onChange} value={this.state.call_extension_country === null ? '' : this.state.call_extension_country }>
-                        { phoneCountries.map((country, ind) => {
+                        { countries.map((country, ind) => {
                           return (
-                            <option value={country} key={country}>{country}</option>
+                            <option value={country.name} key={country.name}>{country.name}</option>
                           );
                        })}
                       </select>

@@ -31,7 +31,7 @@ class Description extends React.Component {
     return <div>
           <div className="form-group mb-0">
             <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
-            <textarea className="AdTextArea" placeholder="Description" maxLength="90" name="description" onChange={this.onChange} value={this.state.description === null ? '' : this.state.description }></textarea>
+            <textarea className="AdTextArea pt-3 pb-0" placeholder="Description" maxLength="90" name="description" onChange={this.onChange} value={this.state.description === null ? '' : this.state.description }></textarea>
             <span className="addcarector">{(this.state.description).length}/90</span>
           </div>
           </div>;

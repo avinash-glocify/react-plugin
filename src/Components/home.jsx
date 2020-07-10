@@ -203,11 +203,11 @@ class Home extends React.Component {
         <div className="row">
           <div className="col-md-6 NoPadding">
             <div className="">
-              <ul className="nav nav-tabs">
-                <li className="nav-item"><a className="nav-link active" onClick={() => this.activeAdd('activeAdd1')}  data-toggle="tab" href="#add1">Add 1</a></li>
-                <li className="nav-item"><a className="nav-link"  onClick={() => this.activeAdd('activeAdd2')} data-toggle="tab" href="#add2">Add 2</a></li>
-                <li className="nav-item"><a  className="nav-link" onClick={() => this.activeAdd('activeAdd3')} data-toggle="tab" href="#add3">Add 3</a></li>
-                <li className="nav-item"><a  className="nav-link" onClick={() => this.activeAdd('responsiveAdd')} data-toggle="tab" href="#responsive">Resonsive</a></li>
+              <ul className="ml-0 nav nav-tabs">
+                <li className="nav-item ml-0"><a className="nav-link active" onClick={() => this.activeAdd('activeAdd1')}  data-toggle="tab" href="#add1">Add 1</a></li>
+                <li className="nav-item ml-0"><a className="nav-link"  onClick={() => this.activeAdd('activeAdd2')} data-toggle="tab" href="#add2">Add 2</a></li>
+                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('activeAdd3')} data-toggle="tab" href="#add3">Add 3</a></li>
+                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('responsiveAdd')} data-toggle="tab" href="#responsive">Resonsive</a></li>
               </ul>
             </div>
             <div className="tab-content">

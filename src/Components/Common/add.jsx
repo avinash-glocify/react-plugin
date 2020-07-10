@@ -87,7 +87,7 @@ class Add extends React.Component {
       ele = e.target;
     }
 
-    if(ele.classList.contains('fa-plus')) {
+    if(ele.classList.contains(`fa-plus`)) {
       ele.classList.remove('fa-plus');
       ele.classList.add('fa-minus');
     } else {
@@ -123,9 +123,9 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseSiteExtension" role="button" aria-expanded="false" aria-controls="collapseSiteExtension">Sitelinks<i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseSiteExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseSiteExtension_${this.props.add}`}>Sitelinks<i className={`fa fa-plus text-info float-right aria-hidden`} aria-hidden="true"></i></a>
               </div>
-              <div id="collapseSiteExtension" className="collapse">
+              <div id={`collapseSiteExtension_${this.props.add}`} className={`collapse`}>
                 <div className="card-body">
                   <div className="">
                   </div>
@@ -160,20 +160,20 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header" >
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallExtension" role="button" aria-expanded="false" aria-controls="collapseCallExtension">
-                Call Extension <i className="fa fa-plus text-info float-right" aria-hidden="true"></i>
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseCallExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallExtension_${this.props.add}`}>
+                Call Extension <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i>
                 </a>
               </div>
-              <div id="collapseCallExtension" className="collapse">
+              <div id={`collapseCallExtension_${this.props.add}`} className="collapse">
                 <CallExtension ref="callExtension" country={this.state.addForm.call_extension_country} phone={this.state.addForm.call_extension}
                 phoneCountries={phoneCountries} changePhone={this.changeDynamicState} />
               </div>
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseCallouts" role="button" aria-expanded="false" aria-controls="collapseCallouts">Callouts   <i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseCallouts_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallouts__${this.props.add}`}>Callouts   <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i></a>
               </div>
-              <div id="collapseCallouts" className="collapse">
+              <div id={`collapseCallouts_${this.props.add}`} className="collapse">
               <div className="card-body">
                 <div className=""></div>
                 <form className="text-ad-form">
@@ -191,9 +191,9 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href="#collapseStructueSnippet" role="button" aria-expanded="false" aria-controls="collapseStructueSnippet">Structured Snippets <i className="fa fa-plus text-info float-right" aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseStructueSnippet_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseStructueSnippet_${this.props.add}`}>Structured Snippets <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i></a>
               </div>
-              <div id="collapseStructueSnippet" className="collapse">
+              <div id={`collapseStructueSnippet_${this.props.add}`} className="collapse">
                 <div className="card-body">
                   <div className=""></div>
                   <form className="text-ad-form">

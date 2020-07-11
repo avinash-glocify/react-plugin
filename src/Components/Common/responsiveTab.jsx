@@ -43,16 +43,21 @@ class ResponsiveTab extends React.Component {
         sitelink1: '',
         sitelink1_desc_1: '',
         sitelink1_desc_2: '',
+        sitelink1_final_url: '',
         sitelink2: '',
         sitelink2_desc_1: '',
         sitelink2_desc_2: '',
+        sitelink2_final_url: '',
         sitelink3: '',
         sitelink3_desc_1: '',
         sitelink3_desc_2: '',
+        sitelink3_final_url: '',
         sitelink4: '',
         sitelink4_desc_1: '',
         sitelink4_desc_2: '',
+        sitelink4_final_url: '',
         call_extension: '',
+        call_extension_country: 'United States',
         callout1: '',
         callout2: '',
         callout3: '',
@@ -182,17 +187,16 @@ class ResponsiveTab extends React.Component {
   }
   render() {
     let {headlines, descriptions, callouts, structure_snippets } = this.state;
-    const {structureHeaders, phoneCountries} = this.props;
+    const {structureHeaders} = this.props;
     return <div>
             <div className="NewTextAd">
                 <form className="text-ad-form">
-                  <div className="form-group mb-0">
+                  <div className="form-group">
                     <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
                     <input type="text" placeholder="Final URL" maxLength="30" className="TextAdField" name="final_url" onChange={this.onChange} value={this.state.addForm.final_url === null ? '' : this.state.addForm.final_url } />
-                    <span className="addcarector">{(this.state.addForm.final_url).length}/30</span>
+                    <span className="addcarector"> </span>
                   </div>
-                  <div className="form-group mb-0">
-
+                  <div className="form-group">
                     <label className="LabelPath d-block">Display Path <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                     <input type="text"  placeholder="www.example.com" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
                     /<input type="text" placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
@@ -236,28 +240,32 @@ class ResponsiveTab extends React.Component {
                   </div>
                   <form className="text-ad-form">
                     <div className="sitelink1">
-                      <p>Sitelink 1</p>
+                      <label className="LabelPath d-block mb-2">Sitelink 1 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink1" headline={this.state.addForm.sitelink1} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_desc_1" headline={this.state.addForm.sitelink1_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_desc_2" headline={this.state.addForm.sitelink1_desc_2} />
+                      <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_final_url" headline={this.state.addForm.sitelink1_final_url} />
                     </div>
                     <div className="sitelink2">
-                      <p>Sitelink 2</p>
+                        <label className="LabelPath d-block mb-2">Sitelink 2 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink2" headline={this.state.addForm.sitelink2} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_desc_1" headline={this.state.addForm.sitelink2_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_desc_2" headline={this.state.addForm.sitelink2_desc_2} />
+                      <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_final_url" headline={this.state.addForm.sitelink2_final_url} />
                     </div>
                     <div className="sitelink3">
-                      <p>Sitelink 3</p>
+                        <label className="LabelPath d-block mb-2">Sitelink 3 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink3" headline={this.state.addForm.sitelink3} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_desc_1" headline={this.state.addForm.sitelink3_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_desc_2" headline={this.state.addForm.sitelink3_desc_2} />
+                      <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_final_url" headline={this.state.addForm.sitelink3_final_url} />
                     </div>
                     <div className="sitelink4">
-                      <p>Sitelink 4</p>
+                        <label className="LabelPath d-block mb-2">Sitelink 4 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink4" headline={this.state.addForm.sitelink4} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink4_desc_1" headline={this.state.addForm.sitelink4_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink4_desc_2" headline={this.state.addForm.sitelink4_desc_2} />
+                      <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink4_final_url" headline={this.state.addForm.sitelink4_final_url} />
                     </div>
                   </form>
                 </div>
@@ -271,7 +279,7 @@ class ResponsiveTab extends React.Component {
               </div>
               <div id="collapseCallExtension" className="collapse">
                 <CallExtension ref="callExtension" country={this.state.addForm.call_extension_country} phone={this.state.addForm.call_extension}
-                phoneCountries={phoneCountries} changePhone={this.changeDynamicState} />
+                changePhone={this.changeDynamicState} />
               </div>
             </div>
             <div className="card  mt-2">

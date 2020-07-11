@@ -45,10 +45,6 @@ class Home extends React.Component {
         'Styles',
         'Types',
       ],
-      phone_countries: [
-        'india',
-        'United State',
-      ],
       headers : [
         { label: 'Final Url', key: 'final_url' },
         { label: 'Headline 1', key: 'headline1' },
@@ -65,12 +61,16 @@ class Home extends React.Component {
         { label: 'Sitelink 4', key: 'sitelink4' },
         { label: 'Sitelink 1 Description 1', key: 'sitelink1_desc_1' },
         { label: 'Sitelink 1 Description 2', key: 'sitelink1_desc_2' },
+        { label: 'Sitelink 1 Final Url', key: 'sitelink1_final_url' },
         { label: 'Sitelink 2 Description 1', key: 'sitelink2_desc_1' },
         { label: 'Sitelink 2 Description 2', key: 'sitelink2_desc_2' },
+        { label: 'Sitelink 2 Final Url', key: 'sitelink2_final_url' },
         { label: 'Sitelink 3 Description 1', key: 'sitelink3_desc_1' },
         { label: 'Sitelink 3 Description 2', key: 'sitelink3_desc_2' },
+        { label: 'Sitelink 3 Final Url', key: 'sitelink3_final_url' },
         { label: 'Sitelink 4 Description 1', key: 'sitelink4_desc_1' },
         { label: 'Sitelink 4 Description 2', key: 'sitelink4_desc_2' },
+        { label: 'Sitelink 4 Final Url', key: 'sitelink4_final_url' },
         { label: 'Call Extension', key: 'call_extension' },
         { label: 'Call Extension Country', key: 'call_extension_country' },
         { label: 'Callout 1', key: 'callout1' },
@@ -204,28 +204,28 @@ class Home extends React.Component {
           <div className="col-md-6 NoPadding">
             <div className="">
               <ul className="ml-0 nav nav-tabs">
-                <li className="nav-item ml-0"><a className="nav-link active" onClick={() => this.activeAdd('activeAdd1')}  data-toggle="tab" href="#add1">Add 1</a></li>
-                <li className="nav-item ml-0"><a className="nav-link"  onClick={() => this.activeAdd('activeAdd2')} data-toggle="tab" href="#add2">Add 2</a></li>
-                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('activeAdd3')} data-toggle="tab" href="#add3">Add 3</a></li>
-                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('responsiveAdd')} data-toggle="tab" href="#responsive">Resonsive</a></li>
+                <li className="nav-item ml-0"><a className="nav-link active" onClick={() => this.activeAdd('activeAdd1')}  data-toggle="tab" href="#add1">Ad 1</a></li>
+                <li className="nav-item ml-0"><a className="nav-link"  onClick={() => this.activeAdd('activeAdd2')} data-toggle="tab" href="#add2">Ad 2</a></li>
+                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('activeAdd3')} data-toggle="tab" href="#add3">Ad 3</a></li>
+                <li className="nav-item ml-0"><a  className="nav-link" onClick={() => this.activeAdd('responsiveAdd')} data-toggle="tab" href="#responsive">Responsive Ad</a></li>
               </ul>
             </div>
             <div className="tab-content">
               <div id="add1" className="tab-pane active  p-0">
                 <Add add="add1" changeState={this.changeState1} resetForm={this.resetForm1}
-                structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
+                structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="add2" className="tab-pane  fade p-0">
                 <Add add="add2" changeState={this.changeState2} resetForm={this.resetForm2}
-                structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
+                structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="add3" className="tab-pane  fade p-0">
                 <Add add="add3" changeState={this.changeState3} resetForm={this.resetForm3}
-                structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
+                structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="responsive" className="tab-pane  fade p-0">
                 <ResponsiveTab add="add3" changeState={this.changeState4} addColumnDynamic={this.addColumnDynamic1}
-                resetForm={this.resetForm4} structureHeaders={this.state.structure_headers} headers={this.state.headers} phoneCountries={this.state.phone_countries} />
+                resetForm={this.resetForm4} structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
             </div>
           </div>
@@ -241,18 +241,15 @@ class Home extends React.Component {
               { this.state.mobileView  ?
                 <div className="HeighLightAd">
                     <h3 className="Mobile">Mobile</h3>
-                    <div className="smartphone">
-                      <div className="content">
-                        <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
-                        { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                        { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                         structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                        { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
-                         structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
-                       </div>
-                     </div>
+                    <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
+                    { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                    { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                    { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
+                     structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
+
                  </div>:
                   <div className="HeighLightAd">
                     <h3 className="Mobile">Desktop</h3>

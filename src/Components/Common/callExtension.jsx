@@ -32,7 +32,6 @@ class CallExtension extends React.Component {
     this.setState({ call_extension_country: nextProps.country, call_extension: nextProps.phone });
   }
   render() {
-    const {phoneCountries} = this.props;
     return <div>
             <div className="card-body">
               <form className="text-ad-form">

@@ -18,7 +18,7 @@ render() {
                )
             }) }
             <a href="true" onClick={(e) => { e.preventDefault() }} className="SitePath">
-              <span>Ad</span> {this.props.data.display_path} {this.props.data.path1 ? '/' +this.props.data.path1 : ''} {this.props.data.path2 ? '/' +this.props.data.path2 : ''}
+              <span>Ad</span> {this.props.data.display_path}{this.props.data.path1 ? '/' +this.props.data.path1 : ''}{this.props.data.path2 ? '/' +this.props.data.path2 : ''}
               { this.props.data.call_extension ? ' - ' +this.props.data.call_extension : '' }
             </a>
             { descriptions.map((desc, ind) => {

@@ -32,12 +32,12 @@ class ResponsiveTab extends React.Component {
     this.setState({
       addForm: {
         final_url: '',
-        headline1: 'Awesome Headline 1',
-        headline2: 'Awesome Headline 2',
+        headline1: '',
+        headline2: '',
         headline3: '',
-        description1: 'Create Some Amazing Ad Copy Tod.',
-        description2: 'Make Your Ad Stand Out!',
-        display_path: 'www.example.com',
+        description1: '',
+        description2: '',
+        display_path: '',
         path1: '',
         path2: '',
         sitelink1: '',
@@ -352,7 +352,7 @@ class ResponsiveTab extends React.Component {
             <div className="mt-2">
               <div className="card-body p-0 pb-2">
                 <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.resetForm}>Reset</button>
-                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export This Add To Xls</button>
+                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export Csv</button>
               </div>
             </div>
 

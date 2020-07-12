@@ -12,20 +12,22 @@ class Home extends React.Component {
       add2: {},
       add3: {},
       responsiveAddData: {},
+      activeAdd1: true,
       activeAdd2: false,
       activeAdd3: false,
       responsiveAdd: false,
       mobileView: true,
+      totalView: 1,
       activeAdd: 'activeAdd1',
       activeView: 1,
       highlightAd: false,
       formData: {
-        headline1: 'Awesome Headline 1',
-        headline2: 'Awesome Headline 2',
+        headline1: '',
+        headline2: '',
         headline3: '',
-        display_path: 'www.example.com',
-        description1: 'Create Some Amazing Ad Copy Tod.',
-        description2: 'Make Your Ad Stand Out!'
+        display_path: '',
+        description1: '',
+        description2: ''
       },
       adHeadlines: [1,2,3],
       adDescriptions: [1,2],
@@ -92,36 +94,93 @@ class Home extends React.Component {
         highlightAd: !prevState.highlightAd
       }));
   }
+
+  closeAdd1 = () => {
+    this.setState({
+      activeAdd1: false,
+      totalView: this.state.totalView-1
+    })
+    this.resetForm1();
+    this.refs.activeAdd1.resetForm();
+  }
+  closeAdd2 = () => {
+    this.setState({
+      activeAdd2: false,
+      totalView: this.state.totalView-1
+    })
+    this.resetForm2();
+    this.refs.activeAdd2.resetForm();
+  }
+  closeAdd3 = () => {
+    this.setState({
+      activeAdd3: false,
+      totalView: this.state.totalView-1
+    })
+    this.resetForm2();
+    this.refs.activeAdd3.resetForm();
+  }
+  closeAdd4 = () => {
+    this.setState({
+      responsiveAdd: false,
+      totalView: this.state.totalView-1
+    })
+    this.resetForm4();
+    this.refs.responsiveAdd.resetForm();
+  }
   changeState1 = (column, value) => {
+    let totalView = this.state.totalView;
+    if(!this.state.activeAdd1) {
+      totalView = totalView + 1;
+    }
     this.setState(prevState => ({
       add1: {
         ...prevState.add1,
         [column] : value
-      }
+      },
+      activeAdd1: true,
+      totalView: totalView
     }))
   }
   changeState2 = (column, value) => {
+    let totalView = this.state.totalView;
+    if(!this.state.activeAdd2) {
+      totalView = totalView + 1;
+    }
     this.setState(prevState => ({
       add2: {
         ...prevState.add2,
         [column] : value
-      }
-    }))
+      },
+      activeAdd2: true,
+      totalView: totalView
+    }));
   }
   changeState3 = (column, value) => {
+    let totalView = this.state.totalView;
+    if(!this.state.activeAdd3) {
+      totalView = totalView + 1;
+    }
     this.setState(prevState => ({
       add3: {
         ...prevState.add3,
-        [column] : value
-      }
+        [column] : value,
+      },
+      activeAdd3: true,
+      totalView: totalView
     }))
   }
   changeState4 = (column, value) => {
+    let totalView = this.state.totalView;
+    if(!this.state.responsiveAdd) {
+      totalView = totalView + 1;
+    }
     this.setState(prevState => ({
       responsiveAddData: {
         ...prevState.responsiveAddData,
         [column] : value
-      }
+      },
+      responsiveAdd: true,
+      totalView: totalView
     }))
   }
 
@@ -148,7 +207,8 @@ class Home extends React.Component {
     if(this.state.totalView !== 4) {
       this.setState({
         [add]: true,
-        activeAdd: add
+        activeAdd: add,
+        totalView: this.state.totalView+1,
       })
     }
   }
@@ -212,19 +272,19 @@ class Home extends React.Component {
             </div>
             <div className="tab-content">
               <div id="add1" className="tab-pane active  p-0">
-                <Add add="add1" changeState={this.changeState1} resetForm={this.resetForm1}
+                <Add add="add1" ref="activeAdd1" changeState={this.changeState1} resetForm={this.resetForm1}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="add2" className="tab-pane  fade p-0">
-                <Add add="add2" changeState={this.changeState2} resetForm={this.resetForm2}
+                <Add add="add2" ref="activeAdd2" changeState={this.changeState2} resetForm={this.resetForm2}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="add3" className="tab-pane  fade p-0">
-                <Add add="add3" changeState={this.changeState3} resetForm={this.resetForm3}
+                <Add add="add3" ref="activeAdd3" changeState={this.changeState3} resetForm={this.resetForm3}
                 structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
               <div id="responsive" className="tab-pane  fade p-0">
-                <ResponsiveTab add="add3" changeState={this.changeState4} addColumnDynamic={this.addColumnDynamic1}
+                <ResponsiveTab add="add3" ref="responsiveAdd" changeState={this.changeState4} addColumnDynamic={this.addColumnDynamic1}
                 resetForm={this.resetForm4} structureHeaders={this.state.structure_headers} headers={this.state.headers} />
               </div>
             </div>
@@ -241,25 +301,25 @@ class Home extends React.Component {
               { this.state.mobileView  ?
                 <div className="HeighLightAd">
                     <h3 className="Mobile">Mobile</h3>
-                    <MobileView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
-                    { this.state.activeAdd2 === true ? <MobileView data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    {this.state.activeAdd1 === true ? <MobileView  data={this.state.add1} totalView={this.state.totalView} closeAdd={this.closeAdd1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.activeAdd3 === true ? <MobileView data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    { this.state.activeAdd2 === true ? <MobileView  data={this.state.add2} totalView={this.state.totalView} closeAdd={this.closeAdd2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.responsiveAdd === true ? <MobileView data={this.state.responsiveAddData} headlines={this.state.headlines} callouts={this.state.callouts}
+                    { this.state.activeAdd3 === true ? <MobileView  data={this.state.add3} totalView={this.state.totalView} closeAdd={this.closeAdd3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
+                    { this.state.responsiveAdd === true ? <MobileView  data={this.state.responsiveAddData} totalView={this.state.totalView} closeAdd={this.closeAdd4} headlines={this.state.headlines} callouts={this.state.callouts}
                      structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions} /> : '' }
 
                  </div>:
                   <div className="HeighLightAd">
                     <h3 className="Mobile">Desktop</h3>
-                    <DesktopView data={this.state.add1} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
-                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} />
-                    { this.state.activeAdd2 === true ? <DesktopView  data={this.state.add2} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    { this.state.activeAdd1 === true ?  <DesktopView  data={this.state.add1} totalView={this.state.totalView} closeAdd={this.closeAdd1}  headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                     structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : ''}
+                    { this.state.activeAdd2 === true ? <DesktopView   data={this.state.add2} totalView={this.state.totalView} closeAdd={this.closeAdd2}  headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.activeAdd3 === true ? <DesktopView  data={this.state.add3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
+                    { this.state.activeAdd3 === true ? <DesktopView   data={this.state.add3} totalView={this.state.totalView} closeAdd={this.closeAdd3} headlines={this.state.adHeadlines} callouts={this.state.adCallouts}
                      structure_snippets={this.state.adStructure_snippets} descriptions={this.state.adDescriptions} /> : '' }
-                    { this.state.responsiveAdd === true ? <DesktopView  headlines={this.state.headlines} callouts={this.state.callouts}
+                    { this.state.responsiveAdd === true ? <DesktopView  totalView={this.state.totalView} closeAdd={this.closeAdd4} headlines={this.state.headlines} callouts={this.state.callouts}
                      structure_snippets={this.state.structure_snippets} descriptions={this.state.descriptions}  data={this.state.responsiveAddData} /> : '' }
                   </div>
                 }

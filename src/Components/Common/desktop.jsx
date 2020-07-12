@@ -2,6 +2,10 @@ import React  from 'react';
 import SiteLink from './sitelink.jsx'
 
 class DesktopView extends React.Component {
+  closeAdd = (e) => {
+    e.preventDefault();
+    this.props.closeAdd();
+  }
 render() {
   let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
@@ -50,6 +54,7 @@ render() {
           <div className="BottomTag">
             <div className="BottomTagInner">
               <SiteLink  data={this.props.data} />
+              { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} ><i className="mt-2 fa fa-window-close float-right text-danger" aria-hidden="true"></i></a> :'' }
             </div>
           </div>
         </div>

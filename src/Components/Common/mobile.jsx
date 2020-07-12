@@ -2,6 +2,10 @@ import React  from 'react';
 import SiteLink from './sitelink.jsx'
 
 class MobileView extends React.Component {
+  closeAdd = (e) => {
+    e.preventDefault();
+    this.props.closeAdd();
+  }
 render() {
   let { callouts, descriptions, headlines, structure_snippets } = this.props
   return <div>
@@ -52,6 +56,7 @@ render() {
                 <p className="PhoneCall">
                   <i className="fa fa-phone" aria-hidden="true"></i>
                     Call {this.props.data.call_extension}
+                    { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} ><i className="fa fa-window-close float-right text-danger" aria-hidden="true"></i></a> :'' }
                 </p>
               </div>
             </div>

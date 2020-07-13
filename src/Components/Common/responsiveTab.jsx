@@ -1,5 +1,6 @@
 import React  from 'react';
 import { CSVLink } from "react-csv";
+import axios from 'axios';
 import CallExtension  from './callExtension.jsx';
 import InputComponent  from './input.jsx';
 import Description  from './description.jsx';
@@ -13,7 +14,9 @@ class ResponsiveTab extends React.Component {
       descriptions: [1,2],
       callouts: [1,2,3],
       structure_snippets: [1,2,3],
-      headers: props.headers
+      headers: props.headers,
+      mailButton: false,
+      mailError: false
     }
 
   }
@@ -180,6 +183,17 @@ class ResponsiveTab extends React.Component {
       }
     }))
     this.props.changeState(column, value);
+  }
+
+  sendMail = () => {
+    const host  = window.location.origin;
+    this.setState({mailButton:true});
+    axios.post(`${host}/wp-json/react/v1/sendMail`, {csvHeaders: this.state.headers, formData: this.state.addForm}).then((res) => {
+      this.setState({mailButton:false});
+    }).catch((error) => {
+      this.setState({mailButton:false, mailError: true});
+      console.log(error);
+    })
   }
 
   UNSAFE_componentWillMount () {
@@ -353,6 +367,8 @@ class ResponsiveTab extends React.Component {
               <div className="card-body p-0 pb-2">
                 <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.resetForm}>Reset</button>
                 <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export Csv</button>
+                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.sendMail}>{ this.state.mailButton ? <span className="spinner-border spinner-border-sm"></span> : ''} Share Mail</button>
+                { this.state.mailError ? <p className="border border-danger d- mt-1 p-3 rounded text-danger"> Something Went Wrong </p> : ''}
               </div>
             </div>
 

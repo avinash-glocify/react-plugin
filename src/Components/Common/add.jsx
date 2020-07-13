@@ -272,7 +272,7 @@ class Add extends React.Component {
               <div className="card-body p-0 pb-2">
                 <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.resetForm}>Reset</button>
                 <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.exportAdd}>Export Csv</button>
-                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.sendMail}>{ this.state.mailButton ? <span className="spinner-border spinner-border-sm"></span> : ''} Share Mail </button>
+                <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.sendMail}>{ this.state.mailButton ? <span className="spinner-border spinner-border-sm"></span> : <i className="fa fa-envelope" aria-hidden="true"></i>} Share  </button>
                 { this.state.mailError ? <p className="border border-danger d- mt-1 p-3 rounded text-danger"> Something Went Wrong </p> : ''}
               </div>
             </div>

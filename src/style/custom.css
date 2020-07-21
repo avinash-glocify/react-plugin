@@ -69,5 +69,12 @@ textarea:focus,input:focus {
   font-size: 14px !important;
   padding: 10px 30px !important;
 }
+.bb-danger {
+  border-bottom: 1px solid red !important;
+}
+.modal-backdrop.in {
+  opacity: 0 !important;
+  position: inherit !important;
+}
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');

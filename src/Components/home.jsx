@@ -3,6 +3,7 @@ import Add from './Common/add.jsx';
 import MobileView from './Common/mobile.jsx';
 import DesktopView from './Common/desktop.jsx';
 import ResponsiveTab from './Common/responsiveTab.jsx';
+import 'react-notifications/lib/notifications.css';
 
 class Home extends React.Component {
   constructor() {

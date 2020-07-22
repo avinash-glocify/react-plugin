@@ -2,6 +2,10 @@ import React  from 'react';
 import axios from 'axios';
 import $ from 'jquery';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import question from '../../Images/question.svg';
+import exportImg from '../../Images/export.svg';
+import inbox from '../../Images/inbox.svg';
+import deleteImg from '../../Images/delete.svg';
 
 class MailModal extends React.Component {
   constructor(props) {
@@ -97,9 +101,9 @@ class MailModal extends React.Component {
   }
   render() {
     return <div className="">
-        <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.props.resetForm}><i className="fa fa-trash-restore"></i> Reset</button>
-        <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.props.exportAdd}> <i className="fa fa-file-export"></i> Export CSV</button>
-        <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.resetForm} data-toggle="modal" data-target={`#myModal_${this.props.formType}`}>{ this.state.mailButton ? <span className="spinner-border spinner-border-sm"></span> : <i className="fa fa-envelope" aria-hidden="true"></i>} Share  </button>
+        <button type="button" className="btn btn-danger reset-button mt-1" onClick={this.props.resetForm}><img alt="" className="mr-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={deleteImg} /> Reset</button>
+        <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.props.exportAdd}> <img alt="" className="mr-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={exportImg} /> Export CSV</button>
+        <button type="button" className="btn btn-success ml-1 import-button mt-1" onClick={this.resetForm} data-toggle="modal" data-target={`#myModal_${this.props.formType}`}>{ this.state.mailButton ? <span className="spinner-border spinner-border-sm"></span> : <img alt="" className="mr-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={inbox} />} Share  </button>
         { this.state.mailError ? <p className="border border-danger d- mt-1 p-3 rounded text-danger"> Something Went Wrong </p> : ''}
 
         <div className="modal fade" id={`myModal_${this.props.formType}`} style={{zIndex:'999999'}}>
@@ -114,13 +118,13 @@ class MailModal extends React.Component {
               <div className="modal-body">
                 <form className="text-ad-form">
                   <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                    <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                     <input type="email" placeholder="Email" maxLength="25" className={`TextAdField ${this.state.errors.email ? "bb-danger" : ""}`} name="email" onChange={this.onChange} value={this.state.mailForm.email === null ? '' : this.state.mailForm.email } />
                     <span className="addcarector">{(this.state.mailForm.email).length}/25</span>
                     <p className="text-danger">{this.state.errors.email ? this.state.errors.email : ''}</p>
                   </div>
                   <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                    <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                     <input type="text" placeholder="Subject" maxLength="25" className={`TextAdField ${this.state.errors.subject ? "bb-danger" : ""}`} name="subject" onChange={this.onChange} value={this.state.mailForm.subject === null ? '' : this.state.mailForm.subject } />
                     <span className="addcarector">{(this.state.mailForm.subject).length}/25</span>
                     <p className="text-danger">{this.state.errors.subject ? this.state.errors.subject : ''}</p>

@@ -1,5 +1,7 @@
 import React  from 'react';
 import SiteLink from './sitelink.jsx'
+import cross from '../../Images/cross.svg';
+import phone from '../../Images/phone.svg';
 
 class MobileView extends React.Component {
   closeAdd = (e) => {
@@ -54,9 +56,9 @@ render() {
               <div className="BottomTagInner">
                 <SiteLink  data={this.props.data} />
                 <p className="PhoneCall">
-                  <i className="fa fa-phone" aria-hidden="true"></i>
+                  <img alt="" className="" style={{height:'20px', width:'20px', position:'relative'}} src={phone} />
                     Call {this.props.data.call_extension}
-                    { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} ><i className="fa fa-window-close float-right text-danger" aria-hidden="true"></i></a> :'' }
+                    { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} >  <img alt="" className="float-right" style={{height:'25px', width:'25px', position:'relative'}} src={cross} /></a> :'' }
                 </p>
               </div>
             </div>

@@ -4,6 +4,8 @@ import MobileView from './Common/mobile.jsx';
 import DesktopView from './Common/desktop.jsx';
 import ResponsiveTab from './Common/responsiveTab.jsx';
 import 'react-notifications/lib/notifications.css';
+import lessthan from '../Images/less.svg';
+import greaterthan from '../Images/greater.svg';
 
 class Home extends React.Component {
   constructor() {
@@ -294,8 +296,8 @@ class Home extends React.Component {
             <div className="HeadingDiv">
             <ul>
               <li> {this.state.activeView} of 2 previews </li>
-              <li className="ml-0">  <a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-left font-weight-bold" aria-hidden="true"></i></strong></a></li>
-              <li className="ml-0"><a href="true" onClick={this.changeView}><strong><i style={{fontSize:'22px'}} className="fa fa-angle-right font-weight-bold" aria-hidden="true"></i></strong></a></li>
+              <li className="ml-0">  <a href="true" onClick={this.changeView}><strong><img  alt="" className="ml-1" style={{height:'15px', width:'15px', position:'relative'}} src={lessthan} /></strong></a></li>
+              <li className="ml-0"><a href="true" onClick={this.changeView}><strong><img  alt="" className="ml-1" style={{height:'15px', width:'15px', position:'relative'}} src={greaterthan} /></strong></a></li>
             </ul>
             </div>
             <div className="MobileDiv">

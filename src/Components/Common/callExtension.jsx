@@ -1,5 +1,6 @@
 import React  from 'react';
 import countries from './countries.js';
+import question from '../../Images/question.svg';
 
 class CallExtension extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class CallExtension extends React.Component {
               <form className="text-ad-form">
                 <div className="sitelink1">
                   <div className="form-group mb-0">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                     <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                       <select className="TextAdField width_45" style={{height:'40px'}}  name="call_extension_country"  onChange={this.onChange} value={this.state.call_extension_country === null ? '' : this.state.call_extension_country }>
                         { countries.map((country, ind) => {
                           return (

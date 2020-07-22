@@ -1,4 +1,5 @@
 import React  from 'react';
+import question from '../../Images/question.svg';
 
 class InputComponent extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class InputComponent extends React.Component {
   render() {
     return <div>
             <div className="form-group mb-0">
-              <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+              <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
               <input type="text" placeholder={this.state.placeholder} maxLength={this.state.maxLength} className="TextAdField" name="value" onChange={this.onChange} value={this.state.value === null ? '' : this.state.value } />
               <span className="addcarector">{(this.state.value).length}/{this.state.maxLength}</span>
             </div>

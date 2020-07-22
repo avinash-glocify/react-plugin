@@ -1,5 +1,6 @@
 import React  from 'react';
 import SiteLink from './sitelink.jsx'
+import cross from '../../Images/cross.svg';
 
 class DesktopView extends React.Component {
   closeAdd = (e) => {
@@ -54,7 +55,7 @@ render() {
           <div className="BottomTag">
             <div className="BottomTagInner">
               <SiteLink  data={this.props.data} />
-              { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} ><i className="mt-2 fa fa-window-close float-right text-danger" aria-hidden="true"></i></a> :'' }
+              { this.props.totalView > 1 ? <a href="true" title="Close Ad" onClick={this.closeAdd} ><img alt="" className="float-right" style={{height:'25px', width:'25px', top:'05px', position:'relative'}} src={cross} /></a> :'' }
             </div>
           </div>
         </div>

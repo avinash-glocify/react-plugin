@@ -4,12 +4,19 @@ import CallExtension  from './callExtension.jsx';
 import InputComponent  from './input.jsx';
 import Description  from './description.jsx';
 import MailModal  from './mailModal.jsx';
+import plus from '../../Images/plus.svg';
+import minus from '../../Images/minus.svg';
+import question from '../../Images/question.svg';
 
 class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addForm: {}
+      addForm: {},
+      SiteLinkLogo:plus,
+      callExtensionLogo: plus,
+      calloutsLogo: plus,
+      structreLogo: plus,
     }
 
   }
@@ -87,30 +94,35 @@ class Add extends React.Component {
     this.csvLink.link.click()
   }
   collapse = (e) => {
-    var ele =  e.target.children[0];
-
-    if(typeof ele === 'undefined') {
-      ele = e.target;
-    }
-
-    if(ele.classList.contains(`fa-plus`)) {
-      ele.classList.remove('fa-plus');
-      ele.classList.add('fa-minus');
-    } else {
-      ele.classList.remove('fa-minus');
-      ele.classList.add('fa-plus');
-    }
+    // var ele =  e.target.children[0];
+    //
+    // if(typeof ele === 'undefined') {
+    //   ele = e.target;
+    // }
+    //
+    // if(ele.classList.contains(`plus`)) {
+    //   ele.classList.remove('plus');
+    //   ele.classList.add('minus');
+    //   ele.setAttribute.src='mySvg'
+    // } else {
+    //   ele.classList.remove('fa-minus');
+    //   ele.classList.add('fa-plus');
+    // }
   }
   UNSAFE_componentWillMount() {
     this.resetForm();
   }
   render() {
     const {structureHeaders, headers} = this.props;
+    const divStyle = {
+      height: '20px',
+      width: '20px'
+    };
     return <div>
             <div className="NewTextAd">
                 <form className="text-ad-form">
                   <div className="form-group">
-                    <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                    <img alt="" className="float-right" style={{height:'15px', width:'15px',top: '20px', position: 'relative'}} src={question} />
                     <input type="text" placeholder="Final URL" maxLength="30" className="TextAdField" name="final_url" onChange={this.onChange} value={this.state.addForm.final_url === null ? '' : this.state.addForm.final_url } />
                     <span className="addcarector"></span>
                   </div>
@@ -118,7 +130,7 @@ class Add extends React.Component {
                   <InputComponent ref="headline" placeholder="Headline 2" maxLength="30" changeHeadline={this.changeDynamicState} name="headline2" headline={this.state.addForm.headline2} />
                   <InputComponent ref="headline" placeholder="Headline 3" maxLength="30" changeHeadline={this.changeDynamicState} name="headline3" headline={this.state.addForm.headline3} />
                   <div className="form-group">
-                    <label className="LabelPath d-block">Display Path <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                    <label className="LabelPath d-block">Display Path <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                     <input type="text"  placeholder="www.example.com" maxLength="30"  className="TextAdField width_45" name="display_path" onChange={this.onChange} value={this.state.addForm.display_path === null ? '' : this.state.addForm.display_path } />
                     /<input type="text"  placeholder="path1" maxLength="15"  className="TextAdField path" name="path1" onChange={this.onChange} value={this.state.addForm.path1 === null ? '' : this.state.addForm.path1 } />
                     /<input type="text" placeholder="path2" maxLength="14"  className="TextAdField path" name="path2" onChange={this.onChange} value={this.state.addForm.path2 === null ? '' : this.state.addForm.path2 } />
@@ -129,7 +141,10 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseSiteExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseSiteExtension_${this.props.add}`}>Sitelinks<i className={`fa fa-plus text-info float-right aria-hidden`} aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={ () => { this.setState({SiteLinkLogo: this.state.SiteLinkLogo === plus ? minus: plus}) }} data-toggle="collapse" href={`#collapseSiteExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseSiteExtension_${this.props.add}`}>
+                Sitelinks
+                <img alt="" className="float-right" style={divStyle} src={this.state.SiteLinkLogo} />
+                </a>
               </div>
               <div id={`collapseSiteExtension_${this.props.add}`} className={`collapse`}>
                 <div className="card-body">
@@ -137,28 +152,28 @@ class Add extends React.Component {
                   </div>
                   <form className="text-ad-form">
                     <div className="sitelink1">
-                      <label className="LabelPath d-block mb-2">Sitelink 1 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <label className="LabelPath d-block mb-2">Sitelink 1 <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink1" headline={this.state.addForm.sitelink1} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_desc_1" headline={this.state.addForm.sitelink1_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_desc_2" headline={this.state.addForm.sitelink1_desc_2} />
                       <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink1_final_url" headline={this.state.addForm.sitelink1_final_url} />
                     </div>
                     <div className="sitelink2">
-                     <label className="LabelPath d-block mb-2">Sitelink 2 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                     <label className="LabelPath d-block mb-2">Sitelink 2 <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink2" headline={this.state.addForm.sitelink2} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_desc_1" headline={this.state.addForm.sitelink2_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_desc_2" headline={this.state.addForm.sitelink2_desc_2} />
                       <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink2_final_url" headline={this.state.addForm.sitelink2_final_url} />
                     </div>
                     <div className="sitelink3">
-                     <label className="LabelPath d-block mb-2">Sitelink 3 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                     <label className="LabelPath d-block mb-2">Sitelink 3 <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink3" headline={this.state.addForm.sitelink3} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_desc_1" headline={this.state.addForm.sitelink3_desc_1} />
                       <InputComponent ref="headline" placeholder="Description Line 2(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_desc_2" headline={this.state.addForm.sitelink3_desc_2} />
                       <InputComponent ref="headline" placeholder="Final Url" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink3_final_url" headline={this.state.addForm.sitelink3_final_url} />
                     </div>
                     <div className="sitelink4">
-                      <label className="LabelPath d-block mb-2">Sitelink 4 <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <label className="LabelPath d-block mb-2">Sitelink 4 <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
 
                       <InputComponent ref="headline" placeholder="SiteLink Text" maxLength="25" changeHeadline={this.changeDynamicState} name="sitelink4" headline={this.state.addForm.sitelink4} />
                       <InputComponent ref="headline" placeholder="Description Line 1(recommended)" maxLength="35" changeHeadline={this.changeDynamicState} name="sitelink4_desc_1" headline={this.state.addForm.sitelink4_desc_1} />
@@ -171,8 +186,9 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header" >
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseCallExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallExtension_${this.props.add}`}>
-                Call Extension <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i>
+                <a className="text-dark" onClick={ () => { this.setState({callExtensionLogo: this.state.callExtensionLogo === plus ? minus: plus}) }} data-toggle="collapse" href={`#collapseCallExtension_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallExtension_${this.props.add}`}>
+                Call Extension
+                  <img alt="" className="float-right" style={divStyle} src={this.state.callExtensionLogo} />
                 </a>
               </div>
               <div id={`collapseCallExtension_${this.props.add}`} className="collapse">
@@ -182,7 +198,7 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseCallouts_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallouts__${this.props.add}`}>Callouts   <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={ () => { this.setState({calloutsLogo: this.state.calloutsLogo === plus ? minus: plus}) }} data-toggle="collapse" href={`#collapseCallouts_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseCallouts__${this.props.add}`}>Callouts   <img alt="" className="float-right" style={divStyle} src={this.state.calloutsLogo} /></a>
               </div>
               <div id={`collapseCallouts_${this.props.add}`} className="collapse">
               <div className="card-body">
@@ -202,14 +218,14 @@ class Add extends React.Component {
             </div>
             <div className="card  mt-2">
               <div className="card-header">
-                <a className="text-dark" onClick={this.collapse} data-toggle="collapse" href={`#collapseStructueSnippet_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseStructueSnippet_${this.props.add}`}>Structured Snippets <i className={`fa fa-plus text-info float-right aria-hidden ${this.props.add}`} aria-hidden="true"></i></a>
+                <a className="text-dark" onClick={ () => { this.setState({structreLogo: this.state.structreLogo === plus ? minus: plus}) }} data-toggle="collapse" href={`#collapseStructueSnippet_${this.props.add}`} role="button" aria-expanded="false" aria-controls={`collapseStructueSnippet_${this.props.add}`}>Structured Snippets <img alt="" className="float-right" style={divStyle} src={this.state.structreLogo} /></a>
               </div>
               <div id={`collapseStructueSnippet_${this.props.add}`} className="collapse">
                 <div className="card-body">
                   <div className=""></div>
                   <form className="text-ad-form">
                     <div className="sitelink1">
-                      <label className="LabelPath d-block mb-2">Header <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <label className="LabelPath d-block mb-2">Header <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                       <div className="form-group mb-0">
                         <select className="TextAdField"  name="structure_snippet_header"  onChange={this.onChange} value={this.state.addForm.structure_snippet_header === null ? '' : this.state.addForm.structure_snippet_header }>
                         { structureHeaders.map((head, ind) => {
@@ -219,34 +235,34 @@ class Add extends React.Component {
                         })}
                         </select>
                       </div>
-                      <label className="LabelPath d-block mt-3 mb-2">Values <i className="fa fa-question-circle" aria-hidden="true"></i></label>
+                      <label className="LabelPath d-block mt-3 mb-2">Values <img alt="" className="ml-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={question} /></label>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                        <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 1" maxLength="25" className="TextAdField" name="structure_snippet_value_1" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_1 === null ? '' : this.state.addForm.structure_snippet_value_1 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_1).length}/25</span>
                       </div>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                        <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 2" maxLength="25" className="TextAdField" name="structure_snippet_value_2" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_2 === null ? '' : this.state.addForm.structure_snippet_value_2 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_2).length}/25</span>
                       </div>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                      <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 3" maxLength="25" className="TextAdField" name="structure_snippet_value_3" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_3 === null ? '' : this.state.addForm.structure_snippet_value_3 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_3).length}/25</span>
                       </div>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                        <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 4" maxLength="25" className="TextAdField" name="structure_snippet_value_4" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_4 === null ? '' : this.state.addForm.structure_snippet_value_4 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_4).length}/25</span>
                       </div>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                        <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 5" maxLength="25" className="TextAdField" name="structure_snippet_value_5" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_5 === null ? '' : this.state.addForm.structure_snippet_value_5 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_5).length}/25</span>
                       </div>
                       <div className="form-group mb-0">
-                        <i className="fa fa-question-circle QuestionCircle" aria-hidden="true"></i>
+                        <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
                         <input type="text" placeholder="Value 6" maxLength="25" className="TextAdField" name="structure_snippet_value_6" onChange={this.onChange} value={this.state.addForm.structure_snippet_value_6 === null ? '' : this.state.addForm.structure_snippet_value_6 } />
                         <span className="addcarector">{(this.state.addForm.structure_snippet_value_6).length}/25</span>
                       </div>

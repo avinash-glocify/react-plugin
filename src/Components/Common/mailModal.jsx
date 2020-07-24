@@ -16,6 +16,7 @@ class MailModal extends React.Component {
       headers: {},
       mailButton: false,
       mailError: false,
+      emptyForm: false,
       errors: {}
     }
 
@@ -36,7 +37,8 @@ class MailModal extends React.Component {
   }
 
   sendMail = (e) => {
-    const host  = window.location.origin;
+      const host         = window.location.origin;
+
       if(this.handleValidation()){
         this.setState({mailButton:true});
         $(`#myModal_${this.props.formType}`).modal('hide')
@@ -57,6 +59,8 @@ class MailModal extends React.Component {
     let fields = this.state.mailForm;
     let errors = {};
     let formIsValid = true;
+    let formData =  this.state.addForm;
+    let formFillFields = [];
 
     if(!fields["email"]){
       formIsValid = false;
@@ -76,6 +80,14 @@ class MailModal extends React.Component {
           errors["email"] = "Email is not valid";
         }
      }
+
+     Object.keys(formData).map((item, i) => {
+       return formData[item] === '' ? formFillFields : formFillFields.push(item);
+     });
+     if(formFillFields.length === 1 && formIsValid === true) {
+        formIsValid = false;
+        this.setState({emptyForm: true});
+     }
      this.setState({errors: errors});
      return formIsValid;
   }
@@ -85,7 +97,8 @@ class MailModal extends React.Component {
         email: '',
         subject: '',
       },
-      errors: {}
+      errors: {},
+      emptyForm:false
     })
   }
 
@@ -119,21 +132,23 @@ class MailModal extends React.Component {
                 <form className="text-ad-form">
                   <div className="form-group mb-0">
                     <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
-                    <input type="email" placeholder="Email" maxLength="25" className={`TextAdField ${this.state.errors.email ? "bb-danger" : ""}`} name="email" onChange={this.onChange} value={this.state.mailForm.email === null ? '' : this.state.mailForm.email } />
-                    <span className="addcarector">{(this.state.mailForm.email).length}/25</span>
+                    <input type="email" placeholder="Email" className={`TextAdField ${this.state.errors.email ? "bb-danger" : ""}`} name="email" onChange={this.onChange} value={this.state.mailForm.email === null ? '' : this.state.mailForm.email } />
                     <p className="text-danger">{this.state.errors.email ? this.state.errors.email : ''}</p>
                   </div>
                   <div className="form-group mb-0">
                     <img alt="" className="float-right" style={{height:'15px', width:'15px', top: '20px', position:'relative'}} src={question} />
-                    <input type="text" placeholder="Subject" maxLength="25" className={`TextAdField ${this.state.errors.subject ? "bb-danger" : ""}`} name="subject" onChange={this.onChange} value={this.state.mailForm.subject === null ? '' : this.state.mailForm.subject } />
-                    <span className="addcarector">{(this.state.mailForm.subject).length}/25</span>
+                    <input type="text" placeholder="Subject" maxLength="35" className={`TextAdField ${this.state.errors.subject ? "bb-danger" : ""}`} name="subject" onChange={this.onChange} value={this.state.mailForm.subject === null ? '' : this.state.mailForm.subject } />
+                    <span className="addcarector">{(this.state.mailForm.subject).length}/35</span>
                     <p className="text-danger">{this.state.errors.subject ? this.state.errors.subject : ''}</p>
                   </div>
                 </form>
               </div>
 
               <div className="modal-footer">
-                <button type="button" className="btn btn-success import-button" onClick={this.sendMail} >Share </button>
+                <button type="button" className="btn btn-success import-button" onClick={this.sendMail} >  <img alt="" className="mr-1" style={{height:'15px', width:'15px', bottom: '2px', position:'relative'}} src={inbox} /> Share </button>
+                <div className="w-100">
+                { this.state.emptyForm ? <p className="border border-danger d-block mb-0 p-2 rounded text-danger">There is nothing to share</p> : ''}
+                </div>
               </div>
               <NotificationContainer />
             </div>
